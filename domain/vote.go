@@ -4,7 +4,7 @@ import (
 	"errors"
 	"time"
 
-	validator "gopkg.in/asaskevich/govalidator.v4"
+	validator "gopkg.in/asaskevich/govalidator.v5"
 	"zenithar.org/go/common/helpers/unique/uniuri"
 )
 

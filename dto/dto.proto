@@ -1,0 +1,117 @@
+syntax = "proto3";
+
+package dto;
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+message Error {
+  int32 code = 1;
+  string message = 2;
+}
+
+message Domain {
+
+  message User {
+    string id = 1;
+    string email = 2;
+    string first_name = 3;
+    string last_name = 4;
+  }
+
+  message Vote {
+    enum Mood {
+      UNDEFINED = 0;
+      BAD = 1;
+      MODERATE = 2;
+      GOOD = 3;
+    }
+    string id = 1;
+    string user_id = 2;
+    Mood mood = 3;
+    string comment = 4;
+    int64 timestamp = 5;
+  }
+
+}
+
+// -----------------------------------------------------------------------------
+// User
+// -----------------------------------------------------------------------------
+
+message UserCreateReq {
+  string id = 1;
+  string email = 2;
+  string first_name = 3;
+  string last_name = 4;
+}
+
+message UserSearchReq {
+  string query = 1;
+  uint32 page = 2;
+  uint32 perPage = 3;
+  repeated string sorts = 4;
+  string email = 5;
+  string first_name = 6;
+  string last_name = 7;
+}
+
+message SingleUserRes {
+  Error error = 1;
+  Domain.User entity = 2;
+}
+
+message MultipleUserRes {
+  Error error = 1;
+  int32 total = 2;
+  repeated Domain.User members = 3;
+}
+
+message PaginatedUserRes {
+  Error error = 1;
+  uint32 total = 2;
+  uint32 perPage = 3;
+  uint32 pageCount = 4;
+  uint32 currentPage = 5;
+  repeated Domain.User members = 6;
+}
+
+// -----------------------------------------------------------------------------
+// Vote
+// -----------------------------------------------------------------------------
+
+message VoteCreateReq {
+  string id = 1;
+  string user_id = 2;
+  int64 timestamp = 3;
+  Domain.Vote.Mood mood = 4;
+  string comment = 5;
+}
+
+message VoteSearchReq {
+  string query = 1;
+  uint32 page = 2;
+  uint32 perPage = 3;
+  repeated string sorts = 4;
+  string user_id = 5;
+  Domain.Vote.Mood mood = 6;
+}
+
+message SingleVoteRes {
+  Error error = 1;
+  Domain.Vote entity = 2;
+}
+
+message MultipleVoteRes {
+  Error error = 1;
+  int32 total = 2;
+  repeated Domain.Vote members = 3;
+}
+
+message PaginatedVoteRes {
+  Error error = 1;
+  uint32 total = 2;
+  uint32 perPage = 3;
+  uint32 pageCount = 4;
+  uint32 currentPage = 5;
+  repeated Domain.Vote members = 6;
+}

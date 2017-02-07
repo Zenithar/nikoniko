@@ -21,6 +21,8 @@ type UserRepository interface {
 	Update(string, domain.User) (*domain.User, error)
 	Delete(string) (*domain.User, error)
 	Search(*UserSearchFilter, *api.SortParameters, *api.Pagination) ([]*domain.User, uint64, error)
+
+	GetByEmail(string) (*domain.User, error)
 }
 
 // -----------------------------------------------------------------------------
