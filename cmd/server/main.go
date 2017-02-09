@@ -2,15 +2,21 @@ package main
 
 import (
 	"flag"
+	"math/rand"
+	"net"
+	"net/http"
 	"os"
 	"strings"
 	"time"
 
-	"esec.sogeti.com/crbr/shared"
-	"esec.sogeti.com/crbr/version"
+	"zenithar.org/go/nikoniko/cmd/server/shared"
+	"zenithar.org/go/nikoniko/cmd/server/system"
+	"zenithar.org/go/nikoniko/version"
 
 	"github.com/Sirupsen/logrus"
 	raven "github.com/getsentry/raven-go"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/zenazn/goji/graceful"
 	"zenithar.org/go/common/logging/logrus/hooks"
 )
 
@@ -50,6 +56,9 @@ func init() {
 
 	// Set localtime to UTC
 	time.Local = time.UTC
+
+	// Initialize random seed
+	rand.Seed(time.Now().UTC().UnixNano())
 
 	logrus.Infoln("**********************************************************")
 	logrus.Infoln("NikoNiko server starting ...")
@@ -110,4 +119,74 @@ func init() {
 
 func main() {
 
+	// Put config into the environment package
+	shared.Config = &shared.Flags{
+		BindAddress:       *bindAddress,
+		LogFormatterType:  *logFormatterType,
+		ForceColors:       *forceColors,
+		RavenDSN:          *ravenDSN,
+		DatabaseDriver:    *databaseDriver,
+		DatabaseHost:      *databaseHost,
+		DatabaseNamespace: *databaseNamespace,
+		DatabaseUser:      *databaseUser,
+		DatabasePassword:  *databasePassword,
+		DevMode:           *devMode,
+		PublicURL:         *publicURL,
+		CookieExpiration:  *cookieExpiration,
+		CookieKey:         *cookieKey,
+		CookieSecure:      *cookieSecure,
+		MemcachedHosts:    *memcachedHosts,
+		RedisHost:         *redisHost,
+	}
+
+	// Initialize the application
+	app := system.Setup(shared.Config)
+	// Start application
+	app.Start()
+
+	logrus.Infoln("**********************************************************")
+
+	// Make the mux handle every request
+	logrus.Infoln("[PROM] Metrics endpoint : '/metrics'")
+	http.Handle("/metrics", prometheus.Handler())
+	http.Handle("/", app.Router())
+
+	// Log that we're starting the server
+	logrus.WithFields(logrus.Fields{
+		"address": shared.Config.BindAddress,
+	}).Info("Starting the HTTP server")
+
+	// Initialize the goroutine listening to signals passed to the app
+	graceful.HandleSignals()
+
+	// Pre-graceful shutdown event
+	graceful.PreHook(func() {
+		logrus.Info("Received a signal, stopping the application")
+		app.Stop()
+	})
+
+	// Post-shutdown event
+	graceful.PostHook(func() {
+		logrus.Info("Stopped the application")
+	})
+
+	// Listen to the passed address
+	listener, err := net.Listen("tcp", shared.Config.BindAddress)
+	if err != nil {
+		logrus.WithFields(logrus.Fields{
+			"error":   err,
+			"address": *bindAddress,
+		}).Fatal("Cannot set up a TCP listener")
+	}
+
+	// Start the listening
+	err = graceful.Serve(listener, http.DefaultServeMux)
+	if err != nil {
+		// Don't use .Fatal! We need the code to shut down properly.
+		logrus.Error(err)
+	}
+
+	// If code reaches this place, it means that it was forcefully closed.
+	// Wait until open connections close.
+	graceful.Wait()
 }

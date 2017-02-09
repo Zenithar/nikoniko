@@ -24,6 +24,6 @@ ldflags="
 	-s"
 
 echo " >   server"
-go build -ldflags "${ldflags}" -o bin/server${ext} ${repo_path}
+go build -ldflags "${ldflags}" -o bin/server${ext} ${repo_path}/cmd/server
 
 exit 0
