@@ -10,18 +10,18 @@ import (
 
 // Vote is the user vote holder
 type Vote struct {
-	ID        string `json:"id" bson:"_id" gorethink:"id" valid:"required,ascii"`
-	Timestamp int64  `json:"timestamp" bson:"timestamp" gorethink:"timestamp" valid:"numeric,required"`
-	Mood      Mood   `json:"mood" bson:"mood" gorethink:"mood" validate:"numeric,required"`
-	Comment   string `json:"comment" bson:"comment" gorethink:"comment" valid:"utf8"`
-	UserID    string `json:"user_id" bson:"user_id" gorethink:"user_id" valid:"required"`
+	ID        string    `json:"id" bson:"_id" gorethink:"id" valid:"required,ascii"`
+	Timestamp time.Time `json:"timestamp" bson:"timestamp" gorethink:"timestamp" valid:"numeric,required"`
+	Mood      Mood      `json:"mood" bson:"mood" gorethink:"mood" validate:"numeric,required"`
+	Comment   string    `json:"comment" bson:"comment" gorethink:"comment" valid:"utf8"`
+	UserID    string    `json:"user_id" bson:"user_id" gorethink:"user_id" valid:"required"`
 }
 
 // NewVote returns a fresh new vote instance
 func NewVote(userID string, mood Mood) (*Vote, error) {
 	entity := &Vote{
 		ID:        uniuri.New().Generate(),
-		Timestamp: time.Now().UTC().Unix(),
+		Timestamp: time.Now().UTC(),
 		Mood:      mood,
 		UserID:    userID,
 	}

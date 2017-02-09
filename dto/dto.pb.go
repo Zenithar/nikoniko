@@ -36,81 +36,198 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
-type Domain_Vote_Mood int32
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the proto package it is being compiled against.
+// A compilation error at this line likely means your copy of the
+// proto package needs to be updated.
+const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
+
+type Domain_Mood int32
 
 const (
-	Domain_Vote_UNDEFINED Domain_Vote_Mood = 0
-	Domain_Vote_BAD       Domain_Vote_Mood = 1
-	Domain_Vote_MODERATE  Domain_Vote_Mood = 2
-	Domain_Vote_GOOD      Domain_Vote_Mood = 3
+	Domain_Undefined Domain_Mood = 0
+	Domain_Bad       Domain_Mood = 1
+	Domain_Moderate  Domain_Mood = 2
+	Domain_Good      Domain_Mood = 3
 )
 
-var Domain_Vote_Mood_name = map[int32]string{
-	0: "UNDEFINED",
-	1: "BAD",
-	2: "MODERATE",
-	3: "GOOD",
+var Domain_Mood_name = map[int32]string{
+	0: "Undefined",
+	1: "Bad",
+	2: "Moderate",
+	3: "Good",
 }
-var Domain_Vote_Mood_value = map[string]int32{
-	"UNDEFINED": 0,
-	"BAD":       1,
-	"MODERATE":  2,
-	"GOOD":      3,
+var Domain_Mood_value = map[string]int32{
+	"Undefined": 0,
+	"Bad":       1,
+	"Moderate":  2,
+	"Good":      3,
 }
 
-func (x Domain_Vote_Mood) String() string {
-	return proto.EnumName(Domain_Vote_Mood_name, int32(x))
+func (x Domain_Mood) String() string {
+	return proto.EnumName(Domain_Mood_name, int32(x))
 }
+func (Domain_Mood) EnumDescriptor() ([]byte, []int) { return fileDescriptorDto, []int{1, 0} }
 
 type Error struct {
 	Code    int32  `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
 	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 }
 
-func (m *Error) Reset()         { *m = Error{} }
-func (m *Error) String() string { return proto.CompactTextString(m) }
-func (*Error) ProtoMessage()    {}
+func (m *Error) Reset()                    { *m = Error{} }
+func (m *Error) String() string            { return proto.CompactTextString(m) }
+func (*Error) ProtoMessage()               {}
+func (*Error) Descriptor() ([]byte, []int) { return fileDescriptorDto, []int{0} }
+
+func (m *Error) GetCode() int32 {
+	if m != nil {
+		return m.Code
+	}
+	return 0
+}
+
+func (m *Error) GetMessage() string {
+	if m != nil {
+		return m.Message
+	}
+	return ""
+}
 
 type Domain struct {
 }
 
-func (m *Domain) Reset()         { *m = Domain{} }
-func (m *Domain) String() string { return proto.CompactTextString(m) }
-func (*Domain) ProtoMessage()    {}
+func (m *Domain) Reset()                    { *m = Domain{} }
+func (m *Domain) String() string            { return proto.CompactTextString(m) }
+func (*Domain) ProtoMessage()               {}
+func (*Domain) Descriptor() ([]byte, []int) { return fileDescriptorDto, []int{1} }
 
 type Domain_User struct {
 	Id        string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Email     string `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
-	FirstName string `protobuf:"bytes,3,opt,name=first_name,proto3" json:"first_name,omitempty"`
-	LastName  string `protobuf:"bytes,4,opt,name=last_name,proto3" json:"last_name,omitempty"`
+	FirstName string `protobuf:"bytes,3,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
+	LastName  string `protobuf:"bytes,4,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
 }
 
-func (m *Domain_User) Reset()         { *m = Domain_User{} }
-func (m *Domain_User) String() string { return proto.CompactTextString(m) }
-func (*Domain_User) ProtoMessage()    {}
+func (m *Domain_User) Reset()                    { *m = Domain_User{} }
+func (m *Domain_User) String() string            { return proto.CompactTextString(m) }
+func (*Domain_User) ProtoMessage()               {}
+func (*Domain_User) Descriptor() ([]byte, []int) { return fileDescriptorDto, []int{1, 0} }
+
+func (m *Domain_User) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *Domain_User) GetEmail() string {
+	if m != nil {
+		return m.Email
+	}
+	return ""
+}
+
+func (m *Domain_User) GetFirstName() string {
+	if m != nil {
+		return m.FirstName
+	}
+	return ""
+}
+
+func (m *Domain_User) GetLastName() string {
+	if m != nil {
+		return m.LastName
+	}
+	return ""
+}
 
 type Domain_Vote struct {
-	Id        string           `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	UserId    string           `protobuf:"bytes,2,opt,name=user_id,proto3" json:"user_id,omitempty"`
-	Mood      Domain_Vote_Mood `protobuf:"varint,3,opt,name=mood,proto3,enum=dto.Domain_Vote_Mood" json:"mood,omitempty"`
-	Comment   string           `protobuf:"bytes,4,opt,name=comment,proto3" json:"comment,omitempty"`
-	Timestamp int64            `protobuf:"varint,5,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+	Id        string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	UserId    string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Mood      string `protobuf:"bytes,3,opt,name=mood,proto3" json:"mood,omitempty"`
+	Comment   string `protobuf:"bytes,4,opt,name=comment,proto3" json:"comment,omitempty"`
+	Timestamp int64  `protobuf:"varint,5,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
 }
 
-func (m *Domain_Vote) Reset()         { *m = Domain_Vote{} }
-func (m *Domain_Vote) String() string { return proto.CompactTextString(m) }
-func (*Domain_Vote) ProtoMessage()    {}
+func (m *Domain_Vote) Reset()                    { *m = Domain_Vote{} }
+func (m *Domain_Vote) String() string            { return proto.CompactTextString(m) }
+func (*Domain_Vote) ProtoMessage()               {}
+func (*Domain_Vote) Descriptor() ([]byte, []int) { return fileDescriptorDto, []int{1, 1} }
+
+func (m *Domain_Vote) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *Domain_Vote) GetUserId() string {
+	if m != nil {
+		return m.UserId
+	}
+	return ""
+}
+
+func (m *Domain_Vote) GetMood() string {
+	if m != nil {
+		return m.Mood
+	}
+	return ""
+}
+
+func (m *Domain_Vote) GetComment() string {
+	if m != nil {
+		return m.Comment
+	}
+	return ""
+}
+
+func (m *Domain_Vote) GetTimestamp() int64 {
+	if m != nil {
+		return m.Timestamp
+	}
+	return 0
+}
 
 type UserCreateReq struct {
 	Id        string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Email     string `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
-	FirstName string `protobuf:"bytes,3,opt,name=first_name,proto3" json:"first_name,omitempty"`
-	LastName  string `protobuf:"bytes,4,opt,name=last_name,proto3" json:"last_name,omitempty"`
+	FirstName string `protobuf:"bytes,3,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
+	LastName  string `protobuf:"bytes,4,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
 }
 
-func (m *UserCreateReq) Reset()         { *m = UserCreateReq{} }
-func (m *UserCreateReq) String() string { return proto.CompactTextString(m) }
-func (*UserCreateReq) ProtoMessage()    {}
+func (m *UserCreateReq) Reset()                    { *m = UserCreateReq{} }
+func (m *UserCreateReq) String() string            { return proto.CompactTextString(m) }
+func (*UserCreateReq) ProtoMessage()               {}
+func (*UserCreateReq) Descriptor() ([]byte, []int) { return fileDescriptorDto, []int{2} }
+
+func (m *UserCreateReq) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *UserCreateReq) GetEmail() string {
+	if m != nil {
+		return m.Email
+	}
+	return ""
+}
+
+func (m *UserCreateReq) GetFirstName() string {
+	if m != nil {
+		return m.FirstName
+	}
+	return ""
+}
+
+func (m *UserCreateReq) GetLastName() string {
+	if m != nil {
+		return m.LastName
+	}
+	return ""
+}
 
 type UserSearchReq struct {
 	Query     string   `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
@@ -118,22 +235,73 @@ type UserSearchReq struct {
 	PerPage   uint32   `protobuf:"varint,3,opt,name=perPage,proto3" json:"perPage,omitempty"`
 	Sorts     []string `protobuf:"bytes,4,rep,name=sorts" json:"sorts,omitempty"`
 	Email     string   `protobuf:"bytes,5,opt,name=email,proto3" json:"email,omitempty"`
-	FirstName string   `protobuf:"bytes,6,opt,name=first_name,proto3" json:"first_name,omitempty"`
-	LastName  string   `protobuf:"bytes,7,opt,name=last_name,proto3" json:"last_name,omitempty"`
+	FirstName string   `protobuf:"bytes,6,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
+	LastName  string   `protobuf:"bytes,7,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
 }
 
-func (m *UserSearchReq) Reset()         { *m = UserSearchReq{} }
-func (m *UserSearchReq) String() string { return proto.CompactTextString(m) }
-func (*UserSearchReq) ProtoMessage()    {}
+func (m *UserSearchReq) Reset()                    { *m = UserSearchReq{} }
+func (m *UserSearchReq) String() string            { return proto.CompactTextString(m) }
+func (*UserSearchReq) ProtoMessage()               {}
+func (*UserSearchReq) Descriptor() ([]byte, []int) { return fileDescriptorDto, []int{3} }
+
+func (m *UserSearchReq) GetQuery() string {
+	if m != nil {
+		return m.Query
+	}
+	return ""
+}
+
+func (m *UserSearchReq) GetPage() uint32 {
+	if m != nil {
+		return m.Page
+	}
+	return 0
+}
+
+func (m *UserSearchReq) GetPerPage() uint32 {
+	if m != nil {
+		return m.PerPage
+	}
+	return 0
+}
+
+func (m *UserSearchReq) GetSorts() []string {
+	if m != nil {
+		return m.Sorts
+	}
+	return nil
+}
+
+func (m *UserSearchReq) GetEmail() string {
+	if m != nil {
+		return m.Email
+	}
+	return ""
+}
+
+func (m *UserSearchReq) GetFirstName() string {
+	if m != nil {
+		return m.FirstName
+	}
+	return ""
+}
+
+func (m *UserSearchReq) GetLastName() string {
+	if m != nil {
+		return m.LastName
+	}
+	return ""
+}
 
 type SingleUserRes struct {
 	Error  *Error       `protobuf:"bytes,1,opt,name=error" json:"error,omitempty"`
 	Entity *Domain_User `protobuf:"bytes,2,opt,name=entity" json:"entity,omitempty"`
 }
 
-func (m *SingleUserRes) Reset()         { *m = SingleUserRes{} }
-func (m *SingleUserRes) String() string { return proto.CompactTextString(m) }
-func (*SingleUserRes) ProtoMessage()    {}
+func (m *SingleUserRes) Reset()                    { *m = SingleUserRes{} }
+func (m *SingleUserRes) String() string            { return proto.CompactTextString(m) }
+func (*SingleUserRes) ProtoMessage()               {}
+func (*SingleUserRes) Descriptor() ([]byte, []int) { return fileDescriptorDto, []int{4} }
 
 func (m *SingleUserRes) GetError() *Error {
 	if m != nil {
@@ -155,15 +323,23 @@ type MultipleUserRes struct {
 	Members []*Domain_User `protobuf:"bytes,3,rep,name=members" json:"members,omitempty"`
 }
 
-func (m *MultipleUserRes) Reset()         { *m = MultipleUserRes{} }
-func (m *MultipleUserRes) String() string { return proto.CompactTextString(m) }
-func (*MultipleUserRes) ProtoMessage()    {}
+func (m *MultipleUserRes) Reset()                    { *m = MultipleUserRes{} }
+func (m *MultipleUserRes) String() string            { return proto.CompactTextString(m) }
+func (*MultipleUserRes) ProtoMessage()               {}
+func (*MultipleUserRes) Descriptor() ([]byte, []int) { return fileDescriptorDto, []int{5} }
 
 func (m *MultipleUserRes) GetError() *Error {
 	if m != nil {
 		return m.Error
 	}
 	return nil
+}
+
+func (m *MultipleUserRes) GetTotal() int32 {
+	if m != nil {
+		return m.Total
+	}
+	return 0
 }
 
 func (m *MultipleUserRes) GetMembers() []*Domain_User {
@@ -182,15 +358,44 @@ type PaginatedUserRes struct {
 	Members     []*Domain_User `protobuf:"bytes,6,rep,name=members" json:"members,omitempty"`
 }
 
-func (m *PaginatedUserRes) Reset()         { *m = PaginatedUserRes{} }
-func (m *PaginatedUserRes) String() string { return proto.CompactTextString(m) }
-func (*PaginatedUserRes) ProtoMessage()    {}
+func (m *PaginatedUserRes) Reset()                    { *m = PaginatedUserRes{} }
+func (m *PaginatedUserRes) String() string            { return proto.CompactTextString(m) }
+func (*PaginatedUserRes) ProtoMessage()               {}
+func (*PaginatedUserRes) Descriptor() ([]byte, []int) { return fileDescriptorDto, []int{6} }
 
 func (m *PaginatedUserRes) GetError() *Error {
 	if m != nil {
 		return m.Error
 	}
 	return nil
+}
+
+func (m *PaginatedUserRes) GetTotal() uint32 {
+	if m != nil {
+		return m.Total
+	}
+	return 0
+}
+
+func (m *PaginatedUserRes) GetPerPage() uint32 {
+	if m != nil {
+		return m.PerPage
+	}
+	return 0
+}
+
+func (m *PaginatedUserRes) GetPageCount() uint32 {
+	if m != nil {
+		return m.PageCount
+	}
+	return 0
+}
+
+func (m *PaginatedUserRes) GetCurrentPage() uint32 {
+	if m != nil {
+		return m.CurrentPage
+	}
+	return 0
 }
 
 func (m *PaginatedUserRes) GetMembers() []*Domain_User {
@@ -201,38 +406,118 @@ func (m *PaginatedUserRes) GetMembers() []*Domain_User {
 }
 
 type VoteCreateReq struct {
-	Id        string           `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	UserId    string           `protobuf:"bytes,2,opt,name=user_id,proto3" json:"user_id,omitempty"`
-	Timestamp int64            `protobuf:"varint,3,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
-	Mood      Domain_Vote_Mood `protobuf:"varint,4,opt,name=mood,proto3,enum=dto.Domain_Vote_Mood" json:"mood,omitempty"`
-	Comment   string           `protobuf:"bytes,5,opt,name=comment,proto3" json:"comment,omitempty"`
+	Id        string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	UserId    string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Timestamp int64  `protobuf:"varint,3,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+	Mood      string `protobuf:"bytes,4,opt,name=mood,proto3" json:"mood,omitempty"`
+	Comment   string `protobuf:"bytes,5,opt,name=comment,proto3" json:"comment,omitempty"`
 }
 
-func (m *VoteCreateReq) Reset()         { *m = VoteCreateReq{} }
-func (m *VoteCreateReq) String() string { return proto.CompactTextString(m) }
-func (*VoteCreateReq) ProtoMessage()    {}
+func (m *VoteCreateReq) Reset()                    { *m = VoteCreateReq{} }
+func (m *VoteCreateReq) String() string            { return proto.CompactTextString(m) }
+func (*VoteCreateReq) ProtoMessage()               {}
+func (*VoteCreateReq) Descriptor() ([]byte, []int) { return fileDescriptorDto, []int{7} }
+
+func (m *VoteCreateReq) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *VoteCreateReq) GetUserId() string {
+	if m != nil {
+		return m.UserId
+	}
+	return ""
+}
+
+func (m *VoteCreateReq) GetTimestamp() int64 {
+	if m != nil {
+		return m.Timestamp
+	}
+	return 0
+}
+
+func (m *VoteCreateReq) GetMood() string {
+	if m != nil {
+		return m.Mood
+	}
+	return ""
+}
+
+func (m *VoteCreateReq) GetComment() string {
+	if m != nil {
+		return m.Comment
+	}
+	return ""
+}
 
 type VoteSearchReq struct {
-	Query   string           `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	Page    uint32           `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
-	PerPage uint32           `protobuf:"varint,3,opt,name=perPage,proto3" json:"perPage,omitempty"`
-	Sorts   []string         `protobuf:"bytes,4,rep,name=sorts" json:"sorts,omitempty"`
-	UserId  string           `protobuf:"bytes,5,opt,name=user_id,proto3" json:"user_id,omitempty"`
-	Mood    Domain_Vote_Mood `protobuf:"varint,6,opt,name=mood,proto3,enum=dto.Domain_Vote_Mood" json:"mood,omitempty"`
+	Query   string   `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	Page    uint32   `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	PerPage uint32   `protobuf:"varint,3,opt,name=perPage,proto3" json:"perPage,omitempty"`
+	Sorts   []string `protobuf:"bytes,4,rep,name=sorts" json:"sorts,omitempty"`
+	UserId  string   `protobuf:"bytes,5,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Mood    string   `protobuf:"bytes,6,opt,name=mood,proto3" json:"mood,omitempty"`
 }
 
-func (m *VoteSearchReq) Reset()         { *m = VoteSearchReq{} }
-func (m *VoteSearchReq) String() string { return proto.CompactTextString(m) }
-func (*VoteSearchReq) ProtoMessage()    {}
+func (m *VoteSearchReq) Reset()                    { *m = VoteSearchReq{} }
+func (m *VoteSearchReq) String() string            { return proto.CompactTextString(m) }
+func (*VoteSearchReq) ProtoMessage()               {}
+func (*VoteSearchReq) Descriptor() ([]byte, []int) { return fileDescriptorDto, []int{8} }
+
+func (m *VoteSearchReq) GetQuery() string {
+	if m != nil {
+		return m.Query
+	}
+	return ""
+}
+
+func (m *VoteSearchReq) GetPage() uint32 {
+	if m != nil {
+		return m.Page
+	}
+	return 0
+}
+
+func (m *VoteSearchReq) GetPerPage() uint32 {
+	if m != nil {
+		return m.PerPage
+	}
+	return 0
+}
+
+func (m *VoteSearchReq) GetSorts() []string {
+	if m != nil {
+		return m.Sorts
+	}
+	return nil
+}
+
+func (m *VoteSearchReq) GetUserId() string {
+	if m != nil {
+		return m.UserId
+	}
+	return ""
+}
+
+func (m *VoteSearchReq) GetMood() string {
+	if m != nil {
+		return m.Mood
+	}
+	return ""
+}
 
 type SingleVoteRes struct {
 	Error  *Error       `protobuf:"bytes,1,opt,name=error" json:"error,omitempty"`
 	Entity *Domain_Vote `protobuf:"bytes,2,opt,name=entity" json:"entity,omitempty"`
 }
 
-func (m *SingleVoteRes) Reset()         { *m = SingleVoteRes{} }
-func (m *SingleVoteRes) String() string { return proto.CompactTextString(m) }
-func (*SingleVoteRes) ProtoMessage()    {}
+func (m *SingleVoteRes) Reset()                    { *m = SingleVoteRes{} }
+func (m *SingleVoteRes) String() string            { return proto.CompactTextString(m) }
+func (*SingleVoteRes) ProtoMessage()               {}
+func (*SingleVoteRes) Descriptor() ([]byte, []int) { return fileDescriptorDto, []int{9} }
 
 func (m *SingleVoteRes) GetError() *Error {
 	if m != nil {
@@ -254,15 +539,23 @@ type MultipleVoteRes struct {
 	Members []*Domain_Vote `protobuf:"bytes,3,rep,name=members" json:"members,omitempty"`
 }
 
-func (m *MultipleVoteRes) Reset()         { *m = MultipleVoteRes{} }
-func (m *MultipleVoteRes) String() string { return proto.CompactTextString(m) }
-func (*MultipleVoteRes) ProtoMessage()    {}
+func (m *MultipleVoteRes) Reset()                    { *m = MultipleVoteRes{} }
+func (m *MultipleVoteRes) String() string            { return proto.CompactTextString(m) }
+func (*MultipleVoteRes) ProtoMessage()               {}
+func (*MultipleVoteRes) Descriptor() ([]byte, []int) { return fileDescriptorDto, []int{10} }
 
 func (m *MultipleVoteRes) GetError() *Error {
 	if m != nil {
 		return m.Error
 	}
 	return nil
+}
+
+func (m *MultipleVoteRes) GetTotal() int32 {
+	if m != nil {
+		return m.Total
+	}
+	return 0
 }
 
 func (m *MultipleVoteRes) GetMembers() []*Domain_Vote {
@@ -281,15 +574,44 @@ type PaginatedVoteRes struct {
 	Members     []*Domain_Vote `protobuf:"bytes,6,rep,name=members" json:"members,omitempty"`
 }
 
-func (m *PaginatedVoteRes) Reset()         { *m = PaginatedVoteRes{} }
-func (m *PaginatedVoteRes) String() string { return proto.CompactTextString(m) }
-func (*PaginatedVoteRes) ProtoMessage()    {}
+func (m *PaginatedVoteRes) Reset()                    { *m = PaginatedVoteRes{} }
+func (m *PaginatedVoteRes) String() string            { return proto.CompactTextString(m) }
+func (*PaginatedVoteRes) ProtoMessage()               {}
+func (*PaginatedVoteRes) Descriptor() ([]byte, []int) { return fileDescriptorDto, []int{11} }
 
 func (m *PaginatedVoteRes) GetError() *Error {
 	if m != nil {
 		return m.Error
 	}
 	return nil
+}
+
+func (m *PaginatedVoteRes) GetTotal() uint32 {
+	if m != nil {
+		return m.Total
+	}
+	return 0
+}
+
+func (m *PaginatedVoteRes) GetPerPage() uint32 {
+	if m != nil {
+		return m.PerPage
+	}
+	return 0
+}
+
+func (m *PaginatedVoteRes) GetPageCount() uint32 {
+	if m != nil {
+		return m.PageCount
+	}
+	return 0
+}
+
+func (m *PaginatedVoteRes) GetCurrentPage() uint32 {
+	if m != nil {
+		return m.CurrentPage
+	}
+	return 0
 }
 
 func (m *PaginatedVoteRes) GetMembers() []*Domain_Vote {
@@ -314,48 +636,48 @@ func init() {
 	proto.RegisterType((*SingleVoteRes)(nil), "dto.SingleVoteRes")
 	proto.RegisterType((*MultipleVoteRes)(nil), "dto.MultipleVoteRes")
 	proto.RegisterType((*PaginatedVoteRes)(nil), "dto.PaginatedVoteRes")
-	proto.RegisterEnum("dto.Domain_Vote_Mood", Domain_Vote_Mood_name, Domain_Vote_Mood_value)
+	proto.RegisterEnum("dto.Domain_Mood", Domain_Mood_name, Domain_Mood_value)
 }
-func (m *Error) Marshal() (data []byte, err error) {
+func (m *Error) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
-	data = make([]byte, size)
-	n, err := m.MarshalTo(data)
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
 	if err != nil {
 		return nil, err
 	}
-	return data[:n], nil
+	return dAtA[:n], nil
 }
 
-func (m *Error) MarshalTo(data []byte) (int, error) {
+func (m *Error) MarshalTo(dAtA []byte) (int, error) {
 	var i int
 	_ = i
 	var l int
 	_ = l
 	if m.Code != 0 {
-		data[i] = 0x8
+		dAtA[i] = 0x8
 		i++
-		i = encodeVarintDto(data, i, uint64(m.Code))
+		i = encodeVarintDto(dAtA, i, uint64(m.Code))
 	}
 	if len(m.Message) > 0 {
-		data[i] = 0x12
+		dAtA[i] = 0x12
 		i++
-		i = encodeVarintDto(data, i, uint64(len(m.Message)))
-		i += copy(data[i:], m.Message)
+		i = encodeVarintDto(dAtA, i, uint64(len(m.Message)))
+		i += copy(dAtA[i:], m.Message)
 	}
 	return i, nil
 }
 
-func (m *Domain) Marshal() (data []byte, err error) {
+func (m *Domain) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
-	data = make([]byte, size)
-	n, err := m.MarshalTo(data)
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
 	if err != nil {
 		return nil, err
 	}
-	return data[:n], nil
+	return dAtA[:n], nil
 }
 
-func (m *Domain) MarshalTo(data []byte) (int, error) {
+func (m *Domain) MarshalTo(dAtA []byte) (int, error) {
 	var i int
 	_ = i
 	var l int
@@ -363,233 +685,234 @@ func (m *Domain) MarshalTo(data []byte) (int, error) {
 	return i, nil
 }
 
-func (m *Domain_User) Marshal() (data []byte, err error) {
+func (m *Domain_User) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
-	data = make([]byte, size)
-	n, err := m.MarshalTo(data)
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
 	if err != nil {
 		return nil, err
 	}
-	return data[:n], nil
+	return dAtA[:n], nil
 }
 
-func (m *Domain_User) MarshalTo(data []byte) (int, error) {
+func (m *Domain_User) MarshalTo(dAtA []byte) (int, error) {
 	var i int
 	_ = i
 	var l int
 	_ = l
 	if len(m.Id) > 0 {
-		data[i] = 0xa
+		dAtA[i] = 0xa
 		i++
-		i = encodeVarintDto(data, i, uint64(len(m.Id)))
-		i += copy(data[i:], m.Id)
+		i = encodeVarintDto(dAtA, i, uint64(len(m.Id)))
+		i += copy(dAtA[i:], m.Id)
 	}
 	if len(m.Email) > 0 {
-		data[i] = 0x12
+		dAtA[i] = 0x12
 		i++
-		i = encodeVarintDto(data, i, uint64(len(m.Email)))
-		i += copy(data[i:], m.Email)
+		i = encodeVarintDto(dAtA, i, uint64(len(m.Email)))
+		i += copy(dAtA[i:], m.Email)
 	}
 	if len(m.FirstName) > 0 {
-		data[i] = 0x1a
+		dAtA[i] = 0x1a
 		i++
-		i = encodeVarintDto(data, i, uint64(len(m.FirstName)))
-		i += copy(data[i:], m.FirstName)
+		i = encodeVarintDto(dAtA, i, uint64(len(m.FirstName)))
+		i += copy(dAtA[i:], m.FirstName)
 	}
 	if len(m.LastName) > 0 {
-		data[i] = 0x22
+		dAtA[i] = 0x22
 		i++
-		i = encodeVarintDto(data, i, uint64(len(m.LastName)))
-		i += copy(data[i:], m.LastName)
+		i = encodeVarintDto(dAtA, i, uint64(len(m.LastName)))
+		i += copy(dAtA[i:], m.LastName)
 	}
 	return i, nil
 }
 
-func (m *Domain_Vote) Marshal() (data []byte, err error) {
+func (m *Domain_Vote) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
-	data = make([]byte, size)
-	n, err := m.MarshalTo(data)
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
 	if err != nil {
 		return nil, err
 	}
-	return data[:n], nil
+	return dAtA[:n], nil
 }
 
-func (m *Domain_Vote) MarshalTo(data []byte) (int, error) {
+func (m *Domain_Vote) MarshalTo(dAtA []byte) (int, error) {
 	var i int
 	_ = i
 	var l int
 	_ = l
 	if len(m.Id) > 0 {
-		data[i] = 0xa
+		dAtA[i] = 0xa
 		i++
-		i = encodeVarintDto(data, i, uint64(len(m.Id)))
-		i += copy(data[i:], m.Id)
+		i = encodeVarintDto(dAtA, i, uint64(len(m.Id)))
+		i += copy(dAtA[i:], m.Id)
 	}
 	if len(m.UserId) > 0 {
-		data[i] = 0x12
+		dAtA[i] = 0x12
 		i++
-		i = encodeVarintDto(data, i, uint64(len(m.UserId)))
-		i += copy(data[i:], m.UserId)
+		i = encodeVarintDto(dAtA, i, uint64(len(m.UserId)))
+		i += copy(dAtA[i:], m.UserId)
 	}
-	if m.Mood != 0 {
-		data[i] = 0x18
+	if len(m.Mood) > 0 {
+		dAtA[i] = 0x1a
 		i++
-		i = encodeVarintDto(data, i, uint64(m.Mood))
+		i = encodeVarintDto(dAtA, i, uint64(len(m.Mood)))
+		i += copy(dAtA[i:], m.Mood)
 	}
 	if len(m.Comment) > 0 {
-		data[i] = 0x22
+		dAtA[i] = 0x22
 		i++
-		i = encodeVarintDto(data, i, uint64(len(m.Comment)))
-		i += copy(data[i:], m.Comment)
+		i = encodeVarintDto(dAtA, i, uint64(len(m.Comment)))
+		i += copy(dAtA[i:], m.Comment)
 	}
 	if m.Timestamp != 0 {
-		data[i] = 0x28
+		dAtA[i] = 0x28
 		i++
-		i = encodeVarintDto(data, i, uint64(m.Timestamp))
+		i = encodeVarintDto(dAtA, i, uint64(m.Timestamp))
 	}
 	return i, nil
 }
 
-func (m *UserCreateReq) Marshal() (data []byte, err error) {
+func (m *UserCreateReq) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
-	data = make([]byte, size)
-	n, err := m.MarshalTo(data)
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
 	if err != nil {
 		return nil, err
 	}
-	return data[:n], nil
+	return dAtA[:n], nil
 }
 
-func (m *UserCreateReq) MarshalTo(data []byte) (int, error) {
+func (m *UserCreateReq) MarshalTo(dAtA []byte) (int, error) {
 	var i int
 	_ = i
 	var l int
 	_ = l
 	if len(m.Id) > 0 {
-		data[i] = 0xa
+		dAtA[i] = 0xa
 		i++
-		i = encodeVarintDto(data, i, uint64(len(m.Id)))
-		i += copy(data[i:], m.Id)
+		i = encodeVarintDto(dAtA, i, uint64(len(m.Id)))
+		i += copy(dAtA[i:], m.Id)
 	}
 	if len(m.Email) > 0 {
-		data[i] = 0x12
+		dAtA[i] = 0x12
 		i++
-		i = encodeVarintDto(data, i, uint64(len(m.Email)))
-		i += copy(data[i:], m.Email)
+		i = encodeVarintDto(dAtA, i, uint64(len(m.Email)))
+		i += copy(dAtA[i:], m.Email)
 	}
 	if len(m.FirstName) > 0 {
-		data[i] = 0x1a
+		dAtA[i] = 0x1a
 		i++
-		i = encodeVarintDto(data, i, uint64(len(m.FirstName)))
-		i += copy(data[i:], m.FirstName)
+		i = encodeVarintDto(dAtA, i, uint64(len(m.FirstName)))
+		i += copy(dAtA[i:], m.FirstName)
 	}
 	if len(m.LastName) > 0 {
-		data[i] = 0x22
+		dAtA[i] = 0x22
 		i++
-		i = encodeVarintDto(data, i, uint64(len(m.LastName)))
-		i += copy(data[i:], m.LastName)
+		i = encodeVarintDto(dAtA, i, uint64(len(m.LastName)))
+		i += copy(dAtA[i:], m.LastName)
 	}
 	return i, nil
 }
 
-func (m *UserSearchReq) Marshal() (data []byte, err error) {
+func (m *UserSearchReq) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
-	data = make([]byte, size)
-	n, err := m.MarshalTo(data)
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
 	if err != nil {
 		return nil, err
 	}
-	return data[:n], nil
+	return dAtA[:n], nil
 }
 
-func (m *UserSearchReq) MarshalTo(data []byte) (int, error) {
+func (m *UserSearchReq) MarshalTo(dAtA []byte) (int, error) {
 	var i int
 	_ = i
 	var l int
 	_ = l
 	if len(m.Query) > 0 {
-		data[i] = 0xa
+		dAtA[i] = 0xa
 		i++
-		i = encodeVarintDto(data, i, uint64(len(m.Query)))
-		i += copy(data[i:], m.Query)
+		i = encodeVarintDto(dAtA, i, uint64(len(m.Query)))
+		i += copy(dAtA[i:], m.Query)
 	}
 	if m.Page != 0 {
-		data[i] = 0x10
+		dAtA[i] = 0x10
 		i++
-		i = encodeVarintDto(data, i, uint64(m.Page))
+		i = encodeVarintDto(dAtA, i, uint64(m.Page))
 	}
 	if m.PerPage != 0 {
-		data[i] = 0x18
+		dAtA[i] = 0x18
 		i++
-		i = encodeVarintDto(data, i, uint64(m.PerPage))
+		i = encodeVarintDto(dAtA, i, uint64(m.PerPage))
 	}
 	if len(m.Sorts) > 0 {
 		for _, s := range m.Sorts {
-			data[i] = 0x22
+			dAtA[i] = 0x22
 			i++
 			l = len(s)
 			for l >= 1<<7 {
-				data[i] = uint8(uint64(l)&0x7f | 0x80)
+				dAtA[i] = uint8(uint64(l)&0x7f | 0x80)
 				l >>= 7
 				i++
 			}
-			data[i] = uint8(l)
+			dAtA[i] = uint8(l)
 			i++
-			i += copy(data[i:], s)
+			i += copy(dAtA[i:], s)
 		}
 	}
 	if len(m.Email) > 0 {
-		data[i] = 0x2a
+		dAtA[i] = 0x2a
 		i++
-		i = encodeVarintDto(data, i, uint64(len(m.Email)))
-		i += copy(data[i:], m.Email)
+		i = encodeVarintDto(dAtA, i, uint64(len(m.Email)))
+		i += copy(dAtA[i:], m.Email)
 	}
 	if len(m.FirstName) > 0 {
-		data[i] = 0x32
+		dAtA[i] = 0x32
 		i++
-		i = encodeVarintDto(data, i, uint64(len(m.FirstName)))
-		i += copy(data[i:], m.FirstName)
+		i = encodeVarintDto(dAtA, i, uint64(len(m.FirstName)))
+		i += copy(dAtA[i:], m.FirstName)
 	}
 	if len(m.LastName) > 0 {
-		data[i] = 0x3a
+		dAtA[i] = 0x3a
 		i++
-		i = encodeVarintDto(data, i, uint64(len(m.LastName)))
-		i += copy(data[i:], m.LastName)
+		i = encodeVarintDto(dAtA, i, uint64(len(m.LastName)))
+		i += copy(dAtA[i:], m.LastName)
 	}
 	return i, nil
 }
 
-func (m *SingleUserRes) Marshal() (data []byte, err error) {
+func (m *SingleUserRes) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
-	data = make([]byte, size)
-	n, err := m.MarshalTo(data)
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
 	if err != nil {
 		return nil, err
 	}
-	return data[:n], nil
+	return dAtA[:n], nil
 }
 
-func (m *SingleUserRes) MarshalTo(data []byte) (int, error) {
+func (m *SingleUserRes) MarshalTo(dAtA []byte) (int, error) {
 	var i int
 	_ = i
 	var l int
 	_ = l
 	if m.Error != nil {
-		data[i] = 0xa
+		dAtA[i] = 0xa
 		i++
-		i = encodeVarintDto(data, i, uint64(m.Error.Size()))
-		n1, err := m.Error.MarshalTo(data[i:])
+		i = encodeVarintDto(dAtA, i, uint64(m.Error.Size()))
+		n1, err := m.Error.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
 		i += n1
 	}
 	if m.Entity != nil {
-		data[i] = 0x12
+		dAtA[i] = 0x12
 		i++
-		i = encodeVarintDto(data, i, uint64(m.Entity.Size()))
-		n2, err := m.Entity.MarshalTo(data[i:])
+		i = encodeVarintDto(dAtA, i, uint64(m.Entity.Size()))
+		n2, err := m.Entity.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
@@ -598,42 +921,42 @@ func (m *SingleUserRes) MarshalTo(data []byte) (int, error) {
 	return i, nil
 }
 
-func (m *MultipleUserRes) Marshal() (data []byte, err error) {
+func (m *MultipleUserRes) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
-	data = make([]byte, size)
-	n, err := m.MarshalTo(data)
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
 	if err != nil {
 		return nil, err
 	}
-	return data[:n], nil
+	return dAtA[:n], nil
 }
 
-func (m *MultipleUserRes) MarshalTo(data []byte) (int, error) {
+func (m *MultipleUserRes) MarshalTo(dAtA []byte) (int, error) {
 	var i int
 	_ = i
 	var l int
 	_ = l
 	if m.Error != nil {
-		data[i] = 0xa
+		dAtA[i] = 0xa
 		i++
-		i = encodeVarintDto(data, i, uint64(m.Error.Size()))
-		n3, err := m.Error.MarshalTo(data[i:])
+		i = encodeVarintDto(dAtA, i, uint64(m.Error.Size()))
+		n3, err := m.Error.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
 		i += n3
 	}
 	if m.Total != 0 {
-		data[i] = 0x10
+		dAtA[i] = 0x10
 		i++
-		i = encodeVarintDto(data, i, uint64(m.Total))
+		i = encodeVarintDto(dAtA, i, uint64(m.Total))
 	}
 	if len(m.Members) > 0 {
 		for _, msg := range m.Members {
-			data[i] = 0x1a
+			dAtA[i] = 0x1a
 			i++
-			i = encodeVarintDto(data, i, uint64(msg.Size()))
-			n, err := msg.MarshalTo(data[i:])
+			i = encodeVarintDto(dAtA, i, uint64(msg.Size()))
+			n, err := msg.MarshalTo(dAtA[i:])
 			if err != nil {
 				return 0, err
 			}
@@ -643,57 +966,57 @@ func (m *MultipleUserRes) MarshalTo(data []byte) (int, error) {
 	return i, nil
 }
 
-func (m *PaginatedUserRes) Marshal() (data []byte, err error) {
+func (m *PaginatedUserRes) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
-	data = make([]byte, size)
-	n, err := m.MarshalTo(data)
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
 	if err != nil {
 		return nil, err
 	}
-	return data[:n], nil
+	return dAtA[:n], nil
 }
 
-func (m *PaginatedUserRes) MarshalTo(data []byte) (int, error) {
+func (m *PaginatedUserRes) MarshalTo(dAtA []byte) (int, error) {
 	var i int
 	_ = i
 	var l int
 	_ = l
 	if m.Error != nil {
-		data[i] = 0xa
+		dAtA[i] = 0xa
 		i++
-		i = encodeVarintDto(data, i, uint64(m.Error.Size()))
-		n4, err := m.Error.MarshalTo(data[i:])
+		i = encodeVarintDto(dAtA, i, uint64(m.Error.Size()))
+		n4, err := m.Error.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
 		i += n4
 	}
 	if m.Total != 0 {
-		data[i] = 0x10
+		dAtA[i] = 0x10
 		i++
-		i = encodeVarintDto(data, i, uint64(m.Total))
+		i = encodeVarintDto(dAtA, i, uint64(m.Total))
 	}
 	if m.PerPage != 0 {
-		data[i] = 0x18
+		dAtA[i] = 0x18
 		i++
-		i = encodeVarintDto(data, i, uint64(m.PerPage))
+		i = encodeVarintDto(dAtA, i, uint64(m.PerPage))
 	}
 	if m.PageCount != 0 {
-		data[i] = 0x20
+		dAtA[i] = 0x20
 		i++
-		i = encodeVarintDto(data, i, uint64(m.PageCount))
+		i = encodeVarintDto(dAtA, i, uint64(m.PageCount))
 	}
 	if m.CurrentPage != 0 {
-		data[i] = 0x28
+		dAtA[i] = 0x28
 		i++
-		i = encodeVarintDto(data, i, uint64(m.CurrentPage))
+		i = encodeVarintDto(dAtA, i, uint64(m.CurrentPage))
 	}
 	if len(m.Members) > 0 {
 		for _, msg := range m.Members {
-			data[i] = 0x32
+			dAtA[i] = 0x32
 			i++
-			i = encodeVarintDto(data, i, uint64(msg.Size()))
-			n, err := msg.MarshalTo(data[i:])
+			i = encodeVarintDto(dAtA, i, uint64(msg.Size()))
+			n, err := msg.MarshalTo(dAtA[i:])
 			if err != nil {
 				return 0, err
 			}
@@ -703,142 +1026,144 @@ func (m *PaginatedUserRes) MarshalTo(data []byte) (int, error) {
 	return i, nil
 }
 
-func (m *VoteCreateReq) Marshal() (data []byte, err error) {
+func (m *VoteCreateReq) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
-	data = make([]byte, size)
-	n, err := m.MarshalTo(data)
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
 	if err != nil {
 		return nil, err
 	}
-	return data[:n], nil
+	return dAtA[:n], nil
 }
 
-func (m *VoteCreateReq) MarshalTo(data []byte) (int, error) {
+func (m *VoteCreateReq) MarshalTo(dAtA []byte) (int, error) {
 	var i int
 	_ = i
 	var l int
 	_ = l
 	if len(m.Id) > 0 {
-		data[i] = 0xa
+		dAtA[i] = 0xa
 		i++
-		i = encodeVarintDto(data, i, uint64(len(m.Id)))
-		i += copy(data[i:], m.Id)
+		i = encodeVarintDto(dAtA, i, uint64(len(m.Id)))
+		i += copy(dAtA[i:], m.Id)
 	}
 	if len(m.UserId) > 0 {
-		data[i] = 0x12
+		dAtA[i] = 0x12
 		i++
-		i = encodeVarintDto(data, i, uint64(len(m.UserId)))
-		i += copy(data[i:], m.UserId)
+		i = encodeVarintDto(dAtA, i, uint64(len(m.UserId)))
+		i += copy(dAtA[i:], m.UserId)
 	}
 	if m.Timestamp != 0 {
-		data[i] = 0x18
+		dAtA[i] = 0x18
 		i++
-		i = encodeVarintDto(data, i, uint64(m.Timestamp))
+		i = encodeVarintDto(dAtA, i, uint64(m.Timestamp))
 	}
-	if m.Mood != 0 {
-		data[i] = 0x20
+	if len(m.Mood) > 0 {
+		dAtA[i] = 0x22
 		i++
-		i = encodeVarintDto(data, i, uint64(m.Mood))
+		i = encodeVarintDto(dAtA, i, uint64(len(m.Mood)))
+		i += copy(dAtA[i:], m.Mood)
 	}
 	if len(m.Comment) > 0 {
-		data[i] = 0x2a
+		dAtA[i] = 0x2a
 		i++
-		i = encodeVarintDto(data, i, uint64(len(m.Comment)))
-		i += copy(data[i:], m.Comment)
+		i = encodeVarintDto(dAtA, i, uint64(len(m.Comment)))
+		i += copy(dAtA[i:], m.Comment)
 	}
 	return i, nil
 }
 
-func (m *VoteSearchReq) Marshal() (data []byte, err error) {
+func (m *VoteSearchReq) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
-	data = make([]byte, size)
-	n, err := m.MarshalTo(data)
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
 	if err != nil {
 		return nil, err
 	}
-	return data[:n], nil
+	return dAtA[:n], nil
 }
 
-func (m *VoteSearchReq) MarshalTo(data []byte) (int, error) {
+func (m *VoteSearchReq) MarshalTo(dAtA []byte) (int, error) {
 	var i int
 	_ = i
 	var l int
 	_ = l
 	if len(m.Query) > 0 {
-		data[i] = 0xa
+		dAtA[i] = 0xa
 		i++
-		i = encodeVarintDto(data, i, uint64(len(m.Query)))
-		i += copy(data[i:], m.Query)
+		i = encodeVarintDto(dAtA, i, uint64(len(m.Query)))
+		i += copy(dAtA[i:], m.Query)
 	}
 	if m.Page != 0 {
-		data[i] = 0x10
+		dAtA[i] = 0x10
 		i++
-		i = encodeVarintDto(data, i, uint64(m.Page))
+		i = encodeVarintDto(dAtA, i, uint64(m.Page))
 	}
 	if m.PerPage != 0 {
-		data[i] = 0x18
+		dAtA[i] = 0x18
 		i++
-		i = encodeVarintDto(data, i, uint64(m.PerPage))
+		i = encodeVarintDto(dAtA, i, uint64(m.PerPage))
 	}
 	if len(m.Sorts) > 0 {
 		for _, s := range m.Sorts {
-			data[i] = 0x22
+			dAtA[i] = 0x22
 			i++
 			l = len(s)
 			for l >= 1<<7 {
-				data[i] = uint8(uint64(l)&0x7f | 0x80)
+				dAtA[i] = uint8(uint64(l)&0x7f | 0x80)
 				l >>= 7
 				i++
 			}
-			data[i] = uint8(l)
+			dAtA[i] = uint8(l)
 			i++
-			i += copy(data[i:], s)
+			i += copy(dAtA[i:], s)
 		}
 	}
 	if len(m.UserId) > 0 {
-		data[i] = 0x2a
+		dAtA[i] = 0x2a
 		i++
-		i = encodeVarintDto(data, i, uint64(len(m.UserId)))
-		i += copy(data[i:], m.UserId)
+		i = encodeVarintDto(dAtA, i, uint64(len(m.UserId)))
+		i += copy(dAtA[i:], m.UserId)
 	}
-	if m.Mood != 0 {
-		data[i] = 0x30
+	if len(m.Mood) > 0 {
+		dAtA[i] = 0x32
 		i++
-		i = encodeVarintDto(data, i, uint64(m.Mood))
+		i = encodeVarintDto(dAtA, i, uint64(len(m.Mood)))
+		i += copy(dAtA[i:], m.Mood)
 	}
 	return i, nil
 }
 
-func (m *SingleVoteRes) Marshal() (data []byte, err error) {
+func (m *SingleVoteRes) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
-	data = make([]byte, size)
-	n, err := m.MarshalTo(data)
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
 	if err != nil {
 		return nil, err
 	}
-	return data[:n], nil
+	return dAtA[:n], nil
 }
 
-func (m *SingleVoteRes) MarshalTo(data []byte) (int, error) {
+func (m *SingleVoteRes) MarshalTo(dAtA []byte) (int, error) {
 	var i int
 	_ = i
 	var l int
 	_ = l
 	if m.Error != nil {
-		data[i] = 0xa
+		dAtA[i] = 0xa
 		i++
-		i = encodeVarintDto(data, i, uint64(m.Error.Size()))
-		n5, err := m.Error.MarshalTo(data[i:])
+		i = encodeVarintDto(dAtA, i, uint64(m.Error.Size()))
+		n5, err := m.Error.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
 		i += n5
 	}
 	if m.Entity != nil {
-		data[i] = 0x12
+		dAtA[i] = 0x12
 		i++
-		i = encodeVarintDto(data, i, uint64(m.Entity.Size()))
-		n6, err := m.Entity.MarshalTo(data[i:])
+		i = encodeVarintDto(dAtA, i, uint64(m.Entity.Size()))
+		n6, err := m.Entity.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
@@ -847,42 +1172,42 @@ func (m *SingleVoteRes) MarshalTo(data []byte) (int, error) {
 	return i, nil
 }
 
-func (m *MultipleVoteRes) Marshal() (data []byte, err error) {
+func (m *MultipleVoteRes) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
-	data = make([]byte, size)
-	n, err := m.MarshalTo(data)
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
 	if err != nil {
 		return nil, err
 	}
-	return data[:n], nil
+	return dAtA[:n], nil
 }
 
-func (m *MultipleVoteRes) MarshalTo(data []byte) (int, error) {
+func (m *MultipleVoteRes) MarshalTo(dAtA []byte) (int, error) {
 	var i int
 	_ = i
 	var l int
 	_ = l
 	if m.Error != nil {
-		data[i] = 0xa
+		dAtA[i] = 0xa
 		i++
-		i = encodeVarintDto(data, i, uint64(m.Error.Size()))
-		n7, err := m.Error.MarshalTo(data[i:])
+		i = encodeVarintDto(dAtA, i, uint64(m.Error.Size()))
+		n7, err := m.Error.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
 		i += n7
 	}
 	if m.Total != 0 {
-		data[i] = 0x10
+		dAtA[i] = 0x10
 		i++
-		i = encodeVarintDto(data, i, uint64(m.Total))
+		i = encodeVarintDto(dAtA, i, uint64(m.Total))
 	}
 	if len(m.Members) > 0 {
 		for _, msg := range m.Members {
-			data[i] = 0x1a
+			dAtA[i] = 0x1a
 			i++
-			i = encodeVarintDto(data, i, uint64(msg.Size()))
-			n, err := msg.MarshalTo(data[i:])
+			i = encodeVarintDto(dAtA, i, uint64(msg.Size()))
+			n, err := msg.MarshalTo(dAtA[i:])
 			if err != nil {
 				return 0, err
 			}
@@ -892,57 +1217,57 @@ func (m *MultipleVoteRes) MarshalTo(data []byte) (int, error) {
 	return i, nil
 }
 
-func (m *PaginatedVoteRes) Marshal() (data []byte, err error) {
+func (m *PaginatedVoteRes) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
-	data = make([]byte, size)
-	n, err := m.MarshalTo(data)
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
 	if err != nil {
 		return nil, err
 	}
-	return data[:n], nil
+	return dAtA[:n], nil
 }
 
-func (m *PaginatedVoteRes) MarshalTo(data []byte) (int, error) {
+func (m *PaginatedVoteRes) MarshalTo(dAtA []byte) (int, error) {
 	var i int
 	_ = i
 	var l int
 	_ = l
 	if m.Error != nil {
-		data[i] = 0xa
+		dAtA[i] = 0xa
 		i++
-		i = encodeVarintDto(data, i, uint64(m.Error.Size()))
-		n8, err := m.Error.MarshalTo(data[i:])
+		i = encodeVarintDto(dAtA, i, uint64(m.Error.Size()))
+		n8, err := m.Error.MarshalTo(dAtA[i:])
 		if err != nil {
 			return 0, err
 		}
 		i += n8
 	}
 	if m.Total != 0 {
-		data[i] = 0x10
+		dAtA[i] = 0x10
 		i++
-		i = encodeVarintDto(data, i, uint64(m.Total))
+		i = encodeVarintDto(dAtA, i, uint64(m.Total))
 	}
 	if m.PerPage != 0 {
-		data[i] = 0x18
+		dAtA[i] = 0x18
 		i++
-		i = encodeVarintDto(data, i, uint64(m.PerPage))
+		i = encodeVarintDto(dAtA, i, uint64(m.PerPage))
 	}
 	if m.PageCount != 0 {
-		data[i] = 0x20
+		dAtA[i] = 0x20
 		i++
-		i = encodeVarintDto(data, i, uint64(m.PageCount))
+		i = encodeVarintDto(dAtA, i, uint64(m.PageCount))
 	}
 	if m.CurrentPage != 0 {
-		data[i] = 0x28
+		dAtA[i] = 0x28
 		i++
-		i = encodeVarintDto(data, i, uint64(m.CurrentPage))
+		i = encodeVarintDto(dAtA, i, uint64(m.CurrentPage))
 	}
 	if len(m.Members) > 0 {
 		for _, msg := range m.Members {
-			data[i] = 0x32
+			dAtA[i] = 0x32
 			i++
-			i = encodeVarintDto(data, i, uint64(msg.Size()))
-			n, err := msg.MarshalTo(data[i:])
+			i = encodeVarintDto(dAtA, i, uint64(msg.Size()))
+			n, err := msg.MarshalTo(dAtA[i:])
 			if err != nil {
 				return 0, err
 			}
@@ -952,31 +1277,31 @@ func (m *PaginatedVoteRes) MarshalTo(data []byte) (int, error) {
 	return i, nil
 }
 
-func encodeFixed64Dto(data []byte, offset int, v uint64) int {
-	data[offset] = uint8(v)
-	data[offset+1] = uint8(v >> 8)
-	data[offset+2] = uint8(v >> 16)
-	data[offset+3] = uint8(v >> 24)
-	data[offset+4] = uint8(v >> 32)
-	data[offset+5] = uint8(v >> 40)
-	data[offset+6] = uint8(v >> 48)
-	data[offset+7] = uint8(v >> 56)
+func encodeFixed64Dto(dAtA []byte, offset int, v uint64) int {
+	dAtA[offset] = uint8(v)
+	dAtA[offset+1] = uint8(v >> 8)
+	dAtA[offset+2] = uint8(v >> 16)
+	dAtA[offset+3] = uint8(v >> 24)
+	dAtA[offset+4] = uint8(v >> 32)
+	dAtA[offset+5] = uint8(v >> 40)
+	dAtA[offset+6] = uint8(v >> 48)
+	dAtA[offset+7] = uint8(v >> 56)
 	return offset + 8
 }
-func encodeFixed32Dto(data []byte, offset int, v uint32) int {
-	data[offset] = uint8(v)
-	data[offset+1] = uint8(v >> 8)
-	data[offset+2] = uint8(v >> 16)
-	data[offset+3] = uint8(v >> 24)
+func encodeFixed32Dto(dAtA []byte, offset int, v uint32) int {
+	dAtA[offset] = uint8(v)
+	dAtA[offset+1] = uint8(v >> 8)
+	dAtA[offset+2] = uint8(v >> 16)
+	dAtA[offset+3] = uint8(v >> 24)
 	return offset + 4
 }
-func encodeVarintDto(data []byte, offset int, v uint64) int {
+func encodeVarintDto(dAtA []byte, offset int, v uint64) int {
 	for v >= 1<<7 {
-		data[offset] = uint8(v&0x7f | 0x80)
+		dAtA[offset] = uint8(v&0x7f | 0x80)
 		v >>= 7
 		offset++
 	}
-	data[offset] = uint8(v)
+	dAtA[offset] = uint8(v)
 	return offset + 1
 }
 func (m *Error) Size() (n int) {
@@ -1031,8 +1356,9 @@ func (m *Domain_Vote) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovDto(uint64(l))
 	}
-	if m.Mood != 0 {
-		n += 1 + sovDto(uint64(m.Mood))
+	l = len(m.Mood)
+	if l > 0 {
+		n += 1 + l + sovDto(uint64(l))
 	}
 	l = len(m.Comment)
 	if l > 0 {
@@ -1175,8 +1501,9 @@ func (m *VoteCreateReq) Size() (n int) {
 	if m.Timestamp != 0 {
 		n += 1 + sovDto(uint64(m.Timestamp))
 	}
-	if m.Mood != 0 {
-		n += 1 + sovDto(uint64(m.Mood))
+	l = len(m.Mood)
+	if l > 0 {
+		n += 1 + l + sovDto(uint64(l))
 	}
 	l = len(m.Comment)
 	if l > 0 {
@@ -1208,8 +1535,9 @@ func (m *VoteSearchReq) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovDto(uint64(l))
 	}
-	if m.Mood != 0 {
-		n += 1 + sovDto(uint64(m.Mood))
+	l = len(m.Mood)
+	if l > 0 {
+		n += 1 + l + sovDto(uint64(l))
 	}
 	return n
 }
@@ -1288,8 +1616,8 @@ func sovDto(x uint64) (n int) {
 func sozDto(x uint64) (n int) {
 	return sovDto(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
-func (m *Error) Unmarshal(data []byte) error {
-	l := len(data)
+func (m *Error) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
 		preIndex := iNdEx
@@ -1301,7 +1629,7 @@ func (m *Error) Unmarshal(data []byte) error {
 			if iNdEx >= l {
 				return io.ErrUnexpectedEOF
 			}
-			b := data[iNdEx]
+			b := dAtA[iNdEx]
 			iNdEx++
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
@@ -1329,7 +1657,7 @@ func (m *Error) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				m.Code |= (int32(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -1348,7 +1676,7 @@ func (m *Error) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				stringLen |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -1363,11 +1691,11 @@ func (m *Error) Unmarshal(data []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Message = string(data[iNdEx:postIndex])
+			m.Message = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
-			skippy, err := skipDto(data[iNdEx:])
+			skippy, err := skipDto(dAtA[iNdEx:])
 			if err != nil {
 				return err
 			}
@@ -1386,8 +1714,8 @@ func (m *Error) Unmarshal(data []byte) error {
 	}
 	return nil
 }
-func (m *Domain) Unmarshal(data []byte) error {
-	l := len(data)
+func (m *Domain) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
 		preIndex := iNdEx
@@ -1399,7 +1727,7 @@ func (m *Domain) Unmarshal(data []byte) error {
 			if iNdEx >= l {
 				return io.ErrUnexpectedEOF
 			}
-			b := data[iNdEx]
+			b := dAtA[iNdEx]
 			iNdEx++
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
@@ -1417,7 +1745,7 @@ func (m *Domain) Unmarshal(data []byte) error {
 		switch fieldNum {
 		default:
 			iNdEx = preIndex
-			skippy, err := skipDto(data[iNdEx:])
+			skippy, err := skipDto(dAtA[iNdEx:])
 			if err != nil {
 				return err
 			}
@@ -1436,8 +1764,8 @@ func (m *Domain) Unmarshal(data []byte) error {
 	}
 	return nil
 }
-func (m *Domain_User) Unmarshal(data []byte) error {
-	l := len(data)
+func (m *Domain_User) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
 		preIndex := iNdEx
@@ -1449,7 +1777,7 @@ func (m *Domain_User) Unmarshal(data []byte) error {
 			if iNdEx >= l {
 				return io.ErrUnexpectedEOF
 			}
-			b := data[iNdEx]
+			b := dAtA[iNdEx]
 			iNdEx++
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
@@ -1477,7 +1805,7 @@ func (m *Domain_User) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				stringLen |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -1492,7 +1820,7 @@ func (m *Domain_User) Unmarshal(data []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Id = string(data[iNdEx:postIndex])
+			m.Id = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
@@ -1506,7 +1834,7 @@ func (m *Domain_User) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				stringLen |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -1521,7 +1849,7 @@ func (m *Domain_User) Unmarshal(data []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Email = string(data[iNdEx:postIndex])
+			m.Email = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 3:
 			if wireType != 2 {
@@ -1535,7 +1863,7 @@ func (m *Domain_User) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				stringLen |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -1550,7 +1878,7 @@ func (m *Domain_User) Unmarshal(data []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.FirstName = string(data[iNdEx:postIndex])
+			m.FirstName = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 4:
 			if wireType != 2 {
@@ -1564,7 +1892,7 @@ func (m *Domain_User) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				stringLen |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -1579,11 +1907,11 @@ func (m *Domain_User) Unmarshal(data []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.LastName = string(data[iNdEx:postIndex])
+			m.LastName = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
-			skippy, err := skipDto(data[iNdEx:])
+			skippy, err := skipDto(dAtA[iNdEx:])
 			if err != nil {
 				return err
 			}
@@ -1602,8 +1930,8 @@ func (m *Domain_User) Unmarshal(data []byte) error {
 	}
 	return nil
 }
-func (m *Domain_Vote) Unmarshal(data []byte) error {
-	l := len(data)
+func (m *Domain_Vote) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
 		preIndex := iNdEx
@@ -1615,7 +1943,7 @@ func (m *Domain_Vote) Unmarshal(data []byte) error {
 			if iNdEx >= l {
 				return io.ErrUnexpectedEOF
 			}
-			b := data[iNdEx]
+			b := dAtA[iNdEx]
 			iNdEx++
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
@@ -1643,7 +1971,7 @@ func (m *Domain_Vote) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				stringLen |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -1658,7 +1986,7 @@ func (m *Domain_Vote) Unmarshal(data []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Id = string(data[iNdEx:postIndex])
+			m.Id = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
@@ -1672,7 +2000,7 @@ func (m *Domain_Vote) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				stringLen |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -1687,13 +2015,13 @@ func (m *Domain_Vote) Unmarshal(data []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.UserId = string(data[iNdEx:postIndex])
+			m.UserId = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 3:
-			if wireType != 0 {
+			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Mood", wireType)
 			}
-			m.Mood = 0
+			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowDto
@@ -1701,13 +2029,23 @@ func (m *Domain_Vote) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
-				m.Mood |= (Domain_Vote_Mood(b) & 0x7F) << shift
+				stringLen |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthDto
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Mood = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
 		case 4:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Comment", wireType)
@@ -1720,7 +2058,7 @@ func (m *Domain_Vote) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				stringLen |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -1735,7 +2073,7 @@ func (m *Domain_Vote) Unmarshal(data []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Comment = string(data[iNdEx:postIndex])
+			m.Comment = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 5:
 			if wireType != 0 {
@@ -1749,7 +2087,7 @@ func (m *Domain_Vote) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				m.Timestamp |= (int64(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -1758,7 +2096,7 @@ func (m *Domain_Vote) Unmarshal(data []byte) error {
 			}
 		default:
 			iNdEx = preIndex
-			skippy, err := skipDto(data[iNdEx:])
+			skippy, err := skipDto(dAtA[iNdEx:])
 			if err != nil {
 				return err
 			}
@@ -1777,8 +2115,8 @@ func (m *Domain_Vote) Unmarshal(data []byte) error {
 	}
 	return nil
 }
-func (m *UserCreateReq) Unmarshal(data []byte) error {
-	l := len(data)
+func (m *UserCreateReq) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
 		preIndex := iNdEx
@@ -1790,7 +2128,7 @@ func (m *UserCreateReq) Unmarshal(data []byte) error {
 			if iNdEx >= l {
 				return io.ErrUnexpectedEOF
 			}
-			b := data[iNdEx]
+			b := dAtA[iNdEx]
 			iNdEx++
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
@@ -1818,7 +2156,7 @@ func (m *UserCreateReq) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				stringLen |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -1833,7 +2171,7 @@ func (m *UserCreateReq) Unmarshal(data []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Id = string(data[iNdEx:postIndex])
+			m.Id = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
@@ -1847,7 +2185,7 @@ func (m *UserCreateReq) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				stringLen |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -1862,7 +2200,7 @@ func (m *UserCreateReq) Unmarshal(data []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Email = string(data[iNdEx:postIndex])
+			m.Email = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 3:
 			if wireType != 2 {
@@ -1876,7 +2214,7 @@ func (m *UserCreateReq) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				stringLen |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -1891,7 +2229,7 @@ func (m *UserCreateReq) Unmarshal(data []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.FirstName = string(data[iNdEx:postIndex])
+			m.FirstName = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 4:
 			if wireType != 2 {
@@ -1905,7 +2243,7 @@ func (m *UserCreateReq) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				stringLen |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -1920,11 +2258,11 @@ func (m *UserCreateReq) Unmarshal(data []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.LastName = string(data[iNdEx:postIndex])
+			m.LastName = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
-			skippy, err := skipDto(data[iNdEx:])
+			skippy, err := skipDto(dAtA[iNdEx:])
 			if err != nil {
 				return err
 			}
@@ -1943,8 +2281,8 @@ func (m *UserCreateReq) Unmarshal(data []byte) error {
 	}
 	return nil
 }
-func (m *UserSearchReq) Unmarshal(data []byte) error {
-	l := len(data)
+func (m *UserSearchReq) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
 		preIndex := iNdEx
@@ -1956,7 +2294,7 @@ func (m *UserSearchReq) Unmarshal(data []byte) error {
 			if iNdEx >= l {
 				return io.ErrUnexpectedEOF
 			}
-			b := data[iNdEx]
+			b := dAtA[iNdEx]
 			iNdEx++
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
@@ -1984,7 +2322,7 @@ func (m *UserSearchReq) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				stringLen |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -1999,7 +2337,7 @@ func (m *UserSearchReq) Unmarshal(data []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Query = string(data[iNdEx:postIndex])
+			m.Query = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 2:
 			if wireType != 0 {
@@ -2013,7 +2351,7 @@ func (m *UserSearchReq) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				m.Page |= (uint32(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2032,7 +2370,7 @@ func (m *UserSearchReq) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				m.PerPage |= (uint32(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2051,7 +2389,7 @@ func (m *UserSearchReq) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				stringLen |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2066,7 +2404,7 @@ func (m *UserSearchReq) Unmarshal(data []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Sorts = append(m.Sorts, string(data[iNdEx:postIndex]))
+			m.Sorts = append(m.Sorts, string(dAtA[iNdEx:postIndex]))
 			iNdEx = postIndex
 		case 5:
 			if wireType != 2 {
@@ -2080,7 +2418,7 @@ func (m *UserSearchReq) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				stringLen |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2095,7 +2433,7 @@ func (m *UserSearchReq) Unmarshal(data []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Email = string(data[iNdEx:postIndex])
+			m.Email = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 6:
 			if wireType != 2 {
@@ -2109,7 +2447,7 @@ func (m *UserSearchReq) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				stringLen |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2124,7 +2462,7 @@ func (m *UserSearchReq) Unmarshal(data []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.FirstName = string(data[iNdEx:postIndex])
+			m.FirstName = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 7:
 			if wireType != 2 {
@@ -2138,7 +2476,7 @@ func (m *UserSearchReq) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				stringLen |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2153,11 +2491,11 @@ func (m *UserSearchReq) Unmarshal(data []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.LastName = string(data[iNdEx:postIndex])
+			m.LastName = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
-			skippy, err := skipDto(data[iNdEx:])
+			skippy, err := skipDto(dAtA[iNdEx:])
 			if err != nil {
 				return err
 			}
@@ -2176,8 +2514,8 @@ func (m *UserSearchReq) Unmarshal(data []byte) error {
 	}
 	return nil
 }
-func (m *SingleUserRes) Unmarshal(data []byte) error {
-	l := len(data)
+func (m *SingleUserRes) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
 		preIndex := iNdEx
@@ -2189,7 +2527,7 @@ func (m *SingleUserRes) Unmarshal(data []byte) error {
 			if iNdEx >= l {
 				return io.ErrUnexpectedEOF
 			}
-			b := data[iNdEx]
+			b := dAtA[iNdEx]
 			iNdEx++
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
@@ -2217,7 +2555,7 @@ func (m *SingleUserRes) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2234,7 +2572,7 @@ func (m *SingleUserRes) Unmarshal(data []byte) error {
 			if m.Error == nil {
 				m.Error = &Error{}
 			}
-			if err := m.Error.Unmarshal(data[iNdEx:postIndex]); err != nil {
+			if err := m.Error.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -2250,7 +2588,7 @@ func (m *SingleUserRes) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2267,13 +2605,13 @@ func (m *SingleUserRes) Unmarshal(data []byte) error {
 			if m.Entity == nil {
 				m.Entity = &Domain_User{}
 			}
-			if err := m.Entity.Unmarshal(data[iNdEx:postIndex]); err != nil {
+			if err := m.Entity.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
-			skippy, err := skipDto(data[iNdEx:])
+			skippy, err := skipDto(dAtA[iNdEx:])
 			if err != nil {
 				return err
 			}
@@ -2292,8 +2630,8 @@ func (m *SingleUserRes) Unmarshal(data []byte) error {
 	}
 	return nil
 }
-func (m *MultipleUserRes) Unmarshal(data []byte) error {
-	l := len(data)
+func (m *MultipleUserRes) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
 		preIndex := iNdEx
@@ -2305,7 +2643,7 @@ func (m *MultipleUserRes) Unmarshal(data []byte) error {
 			if iNdEx >= l {
 				return io.ErrUnexpectedEOF
 			}
-			b := data[iNdEx]
+			b := dAtA[iNdEx]
 			iNdEx++
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
@@ -2333,7 +2671,7 @@ func (m *MultipleUserRes) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2350,7 +2688,7 @@ func (m *MultipleUserRes) Unmarshal(data []byte) error {
 			if m.Error == nil {
 				m.Error = &Error{}
 			}
-			if err := m.Error.Unmarshal(data[iNdEx:postIndex]); err != nil {
+			if err := m.Error.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -2366,7 +2704,7 @@ func (m *MultipleUserRes) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				m.Total |= (int32(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2385,7 +2723,7 @@ func (m *MultipleUserRes) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2400,13 +2738,13 @@ func (m *MultipleUserRes) Unmarshal(data []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			m.Members = append(m.Members, &Domain_User{})
-			if err := m.Members[len(m.Members)-1].Unmarshal(data[iNdEx:postIndex]); err != nil {
+			if err := m.Members[len(m.Members)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
-			skippy, err := skipDto(data[iNdEx:])
+			skippy, err := skipDto(dAtA[iNdEx:])
 			if err != nil {
 				return err
 			}
@@ -2425,8 +2763,8 @@ func (m *MultipleUserRes) Unmarshal(data []byte) error {
 	}
 	return nil
 }
-func (m *PaginatedUserRes) Unmarshal(data []byte) error {
-	l := len(data)
+func (m *PaginatedUserRes) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
 		preIndex := iNdEx
@@ -2438,7 +2776,7 @@ func (m *PaginatedUserRes) Unmarshal(data []byte) error {
 			if iNdEx >= l {
 				return io.ErrUnexpectedEOF
 			}
-			b := data[iNdEx]
+			b := dAtA[iNdEx]
 			iNdEx++
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
@@ -2466,7 +2804,7 @@ func (m *PaginatedUserRes) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2483,7 +2821,7 @@ func (m *PaginatedUserRes) Unmarshal(data []byte) error {
 			if m.Error == nil {
 				m.Error = &Error{}
 			}
-			if err := m.Error.Unmarshal(data[iNdEx:postIndex]); err != nil {
+			if err := m.Error.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -2499,7 +2837,7 @@ func (m *PaginatedUserRes) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				m.Total |= (uint32(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2518,7 +2856,7 @@ func (m *PaginatedUserRes) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				m.PerPage |= (uint32(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2537,7 +2875,7 @@ func (m *PaginatedUserRes) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				m.PageCount |= (uint32(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2556,7 +2894,7 @@ func (m *PaginatedUserRes) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				m.CurrentPage |= (uint32(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2575,7 +2913,7 @@ func (m *PaginatedUserRes) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2590,13 +2928,13 @@ func (m *PaginatedUserRes) Unmarshal(data []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			m.Members = append(m.Members, &Domain_User{})
-			if err := m.Members[len(m.Members)-1].Unmarshal(data[iNdEx:postIndex]); err != nil {
+			if err := m.Members[len(m.Members)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
-			skippy, err := skipDto(data[iNdEx:])
+			skippy, err := skipDto(dAtA[iNdEx:])
 			if err != nil {
 				return err
 			}
@@ -2615,8 +2953,8 @@ func (m *PaginatedUserRes) Unmarshal(data []byte) error {
 	}
 	return nil
 }
-func (m *VoteCreateReq) Unmarshal(data []byte) error {
-	l := len(data)
+func (m *VoteCreateReq) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
 		preIndex := iNdEx
@@ -2628,7 +2966,7 @@ func (m *VoteCreateReq) Unmarshal(data []byte) error {
 			if iNdEx >= l {
 				return io.ErrUnexpectedEOF
 			}
-			b := data[iNdEx]
+			b := dAtA[iNdEx]
 			iNdEx++
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
@@ -2656,7 +2994,7 @@ func (m *VoteCreateReq) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				stringLen |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2671,7 +3009,7 @@ func (m *VoteCreateReq) Unmarshal(data []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Id = string(data[iNdEx:postIndex])
+			m.Id = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
@@ -2685,7 +3023,7 @@ func (m *VoteCreateReq) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				stringLen |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2700,7 +3038,7 @@ func (m *VoteCreateReq) Unmarshal(data []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.UserId = string(data[iNdEx:postIndex])
+			m.UserId = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 3:
 			if wireType != 0 {
@@ -2714,7 +3052,7 @@ func (m *VoteCreateReq) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				m.Timestamp |= (int64(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2722,27 +3060,8 @@ func (m *VoteCreateReq) Unmarshal(data []byte) error {
 				}
 			}
 		case 4:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Mood", wireType)
-			}
-			m.Mood = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowDto
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := data[iNdEx]
-				iNdEx++
-				m.Mood |= (Domain_Vote_Mood(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 5:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Comment", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Mood", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -2752,7 +3071,7 @@ func (m *VoteCreateReq) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				stringLen |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2767,11 +3086,40 @@ func (m *VoteCreateReq) Unmarshal(data []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Comment = string(data[iNdEx:postIndex])
+			m.Mood = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Comment", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDto
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthDto
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Comment = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
-			skippy, err := skipDto(data[iNdEx:])
+			skippy, err := skipDto(dAtA[iNdEx:])
 			if err != nil {
 				return err
 			}
@@ -2790,8 +3138,8 @@ func (m *VoteCreateReq) Unmarshal(data []byte) error {
 	}
 	return nil
 }
-func (m *VoteSearchReq) Unmarshal(data []byte) error {
-	l := len(data)
+func (m *VoteSearchReq) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
 		preIndex := iNdEx
@@ -2803,7 +3151,7 @@ func (m *VoteSearchReq) Unmarshal(data []byte) error {
 			if iNdEx >= l {
 				return io.ErrUnexpectedEOF
 			}
-			b := data[iNdEx]
+			b := dAtA[iNdEx]
 			iNdEx++
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
@@ -2831,7 +3179,7 @@ func (m *VoteSearchReq) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				stringLen |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2846,7 +3194,7 @@ func (m *VoteSearchReq) Unmarshal(data []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Query = string(data[iNdEx:postIndex])
+			m.Query = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 2:
 			if wireType != 0 {
@@ -2860,7 +3208,7 @@ func (m *VoteSearchReq) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				m.Page |= (uint32(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2879,7 +3227,7 @@ func (m *VoteSearchReq) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				m.PerPage |= (uint32(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2898,7 +3246,7 @@ func (m *VoteSearchReq) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				stringLen |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2913,7 +3261,7 @@ func (m *VoteSearchReq) Unmarshal(data []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Sorts = append(m.Sorts, string(data[iNdEx:postIndex]))
+			m.Sorts = append(m.Sorts, string(dAtA[iNdEx:postIndex]))
 			iNdEx = postIndex
 		case 5:
 			if wireType != 2 {
@@ -2927,7 +3275,7 @@ func (m *VoteSearchReq) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				stringLen |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -2942,13 +3290,13 @@ func (m *VoteSearchReq) Unmarshal(data []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.UserId = string(data[iNdEx:postIndex])
+			m.UserId = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 6:
-			if wireType != 0 {
+			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Mood", wireType)
 			}
-			m.Mood = 0
+			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowDto
@@ -2956,16 +3304,26 @@ func (m *VoteSearchReq) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
-				m.Mood |= (Domain_Vote_Mood(b) & 0x7F) << shift
+				stringLen |= (uint64(b) & 0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthDto
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Mood = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
-			skippy, err := skipDto(data[iNdEx:])
+			skippy, err := skipDto(dAtA[iNdEx:])
 			if err != nil {
 				return err
 			}
@@ -2984,8 +3342,8 @@ func (m *VoteSearchReq) Unmarshal(data []byte) error {
 	}
 	return nil
 }
-func (m *SingleVoteRes) Unmarshal(data []byte) error {
-	l := len(data)
+func (m *SingleVoteRes) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
 		preIndex := iNdEx
@@ -2997,7 +3355,7 @@ func (m *SingleVoteRes) Unmarshal(data []byte) error {
 			if iNdEx >= l {
 				return io.ErrUnexpectedEOF
 			}
-			b := data[iNdEx]
+			b := dAtA[iNdEx]
 			iNdEx++
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
@@ -3025,7 +3383,7 @@ func (m *SingleVoteRes) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -3042,7 +3400,7 @@ func (m *SingleVoteRes) Unmarshal(data []byte) error {
 			if m.Error == nil {
 				m.Error = &Error{}
 			}
-			if err := m.Error.Unmarshal(data[iNdEx:postIndex]); err != nil {
+			if err := m.Error.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -3058,7 +3416,7 @@ func (m *SingleVoteRes) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -3075,13 +3433,13 @@ func (m *SingleVoteRes) Unmarshal(data []byte) error {
 			if m.Entity == nil {
 				m.Entity = &Domain_Vote{}
 			}
-			if err := m.Entity.Unmarshal(data[iNdEx:postIndex]); err != nil {
+			if err := m.Entity.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
-			skippy, err := skipDto(data[iNdEx:])
+			skippy, err := skipDto(dAtA[iNdEx:])
 			if err != nil {
 				return err
 			}
@@ -3100,8 +3458,8 @@ func (m *SingleVoteRes) Unmarshal(data []byte) error {
 	}
 	return nil
 }
-func (m *MultipleVoteRes) Unmarshal(data []byte) error {
-	l := len(data)
+func (m *MultipleVoteRes) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
 		preIndex := iNdEx
@@ -3113,7 +3471,7 @@ func (m *MultipleVoteRes) Unmarshal(data []byte) error {
 			if iNdEx >= l {
 				return io.ErrUnexpectedEOF
 			}
-			b := data[iNdEx]
+			b := dAtA[iNdEx]
 			iNdEx++
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
@@ -3141,7 +3499,7 @@ func (m *MultipleVoteRes) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -3158,7 +3516,7 @@ func (m *MultipleVoteRes) Unmarshal(data []byte) error {
 			if m.Error == nil {
 				m.Error = &Error{}
 			}
-			if err := m.Error.Unmarshal(data[iNdEx:postIndex]); err != nil {
+			if err := m.Error.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -3174,7 +3532,7 @@ func (m *MultipleVoteRes) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				m.Total |= (int32(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -3193,7 +3551,7 @@ func (m *MultipleVoteRes) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -3208,13 +3566,13 @@ func (m *MultipleVoteRes) Unmarshal(data []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			m.Members = append(m.Members, &Domain_Vote{})
-			if err := m.Members[len(m.Members)-1].Unmarshal(data[iNdEx:postIndex]); err != nil {
+			if err := m.Members[len(m.Members)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
-			skippy, err := skipDto(data[iNdEx:])
+			skippy, err := skipDto(dAtA[iNdEx:])
 			if err != nil {
 				return err
 			}
@@ -3233,8 +3591,8 @@ func (m *MultipleVoteRes) Unmarshal(data []byte) error {
 	}
 	return nil
 }
-func (m *PaginatedVoteRes) Unmarshal(data []byte) error {
-	l := len(data)
+func (m *PaginatedVoteRes) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
 		preIndex := iNdEx
@@ -3246,7 +3604,7 @@ func (m *PaginatedVoteRes) Unmarshal(data []byte) error {
 			if iNdEx >= l {
 				return io.ErrUnexpectedEOF
 			}
-			b := data[iNdEx]
+			b := dAtA[iNdEx]
 			iNdEx++
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
@@ -3274,7 +3632,7 @@ func (m *PaginatedVoteRes) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -3291,7 +3649,7 @@ func (m *PaginatedVoteRes) Unmarshal(data []byte) error {
 			if m.Error == nil {
 				m.Error = &Error{}
 			}
-			if err := m.Error.Unmarshal(data[iNdEx:postIndex]); err != nil {
+			if err := m.Error.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -3307,7 +3665,7 @@ func (m *PaginatedVoteRes) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				m.Total |= (uint32(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -3326,7 +3684,7 @@ func (m *PaginatedVoteRes) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				m.PerPage |= (uint32(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -3345,7 +3703,7 @@ func (m *PaginatedVoteRes) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				m.PageCount |= (uint32(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -3364,7 +3722,7 @@ func (m *PaginatedVoteRes) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				m.CurrentPage |= (uint32(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -3383,7 +3741,7 @@ func (m *PaginatedVoteRes) Unmarshal(data []byte) error {
 				if iNdEx >= l {
 					return io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				msglen |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -3398,13 +3756,13 @@ func (m *PaginatedVoteRes) Unmarshal(data []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			m.Members = append(m.Members, &Domain_Vote{})
-			if err := m.Members[len(m.Members)-1].Unmarshal(data[iNdEx:postIndex]); err != nil {
+			if err := m.Members[len(m.Members)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
-			skippy, err := skipDto(data[iNdEx:])
+			skippy, err := skipDto(dAtA[iNdEx:])
 			if err != nil {
 				return err
 			}
@@ -3423,8 +3781,8 @@ func (m *PaginatedVoteRes) Unmarshal(data []byte) error {
 	}
 	return nil
 }
-func skipDto(data []byte) (n int, err error) {
-	l := len(data)
+func skipDto(dAtA []byte) (n int, err error) {
+	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
 		var wire uint64
@@ -3435,7 +3793,7 @@ func skipDto(data []byte) (n int, err error) {
 			if iNdEx >= l {
 				return 0, io.ErrUnexpectedEOF
 			}
-			b := data[iNdEx]
+			b := dAtA[iNdEx]
 			iNdEx++
 			wire |= (uint64(b) & 0x7F) << shift
 			if b < 0x80 {
@@ -3453,7 +3811,7 @@ func skipDto(data []byte) (n int, err error) {
 					return 0, io.ErrUnexpectedEOF
 				}
 				iNdEx++
-				if data[iNdEx-1] < 0x80 {
+				if dAtA[iNdEx-1] < 0x80 {
 					break
 				}
 			}
@@ -3470,7 +3828,7 @@ func skipDto(data []byte) (n int, err error) {
 				if iNdEx >= l {
 					return 0, io.ErrUnexpectedEOF
 				}
-				b := data[iNdEx]
+				b := dAtA[iNdEx]
 				iNdEx++
 				length |= (int(b) & 0x7F) << shift
 				if b < 0x80 {
@@ -3493,7 +3851,7 @@ func skipDto(data []byte) (n int, err error) {
 					if iNdEx >= l {
 						return 0, io.ErrUnexpectedEOF
 					}
-					b := data[iNdEx]
+					b := dAtA[iNdEx]
 					iNdEx++
 					innerWire |= (uint64(b) & 0x7F) << shift
 					if b < 0x80 {
@@ -3504,7 +3862,7 @@ func skipDto(data []byte) (n int, err error) {
 				if innerWireType == 4 {
 					break
 				}
-				next, err := skipDto(data[start:])
+				next, err := skipDto(dAtA[start:])
 				if err != nil {
 					return 0, err
 				}
@@ -3527,3 +3885,49 @@ var (
 	ErrInvalidLengthDto = fmt.Errorf("proto: negative length found during unmarshaling")
 	ErrIntOverflowDto   = fmt.Errorf("proto: integer overflow")
 )
+
+func init() { proto.RegisterFile("dto.proto", fileDescriptorDto) }
+
+var fileDescriptorDto = []byte{
+	// 628 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xc4, 0x55, 0xcd, 0x6e, 0xd3, 0x40,
+	0x10, 0xae, 0xe3, 0x9f, 0xd4, 0x53, 0x0c, 0xd6, 0xaa, 0x12, 0x56, 0x29, 0x91, 0xe5, 0x53, 0x84,
+	0x44, 0x2a, 0x15, 0xc1, 0x03, 0xb4, 0x20, 0xc4, 0xa1, 0xa8, 0x72, 0x55, 0x2e, 0x1c, 0xaa, 0x4d,
+	0x76, 0xea, 0xae, 0x94, 0xf5, 0xa6, 0xeb, 0xf5, 0xa1, 0xe2, 0xca, 0x33, 0x20, 0xde, 0x80, 0x87,
+	0xe0, 0x05, 0x38, 0xf6, 0x11, 0x50, 0x79, 0x11, 0xb4, 0x6b, 0x9b, 0xb4, 0x25, 0xe1, 0xa7, 0xe2,
+	0xe7, 0xb6, 0xdf, 0x8c, 0x67, 0xbe, 0x99, 0xdd, 0xef, 0x4b, 0x20, 0x64, 0x5a, 0x8e, 0x66, 0x4a,
+	0x6a, 0x49, 0x5c, 0xa6, 0xe5, 0xc6, 0xc3, 0x82, 0xeb, 0x93, 0x7a, 0x3c, 0x9a, 0x48, 0xb1, 0x55,
+	0xc8, 0x42, 0x6e, 0xd9, 0xdc, 0xb8, 0x3e, 0xb6, 0xc8, 0x02, 0x7b, 0x6a, 0x6a, 0xb2, 0xc7, 0xe0,
+	0x3f, 0x53, 0x4a, 0x2a, 0x42, 0xc0, 0x9b, 0x48, 0x86, 0x89, 0x93, 0x3a, 0x43, 0x3f, 0xb7, 0x67,
+	0x92, 0x40, 0x5f, 0x60, 0x55, 0xd1, 0x02, 0x93, 0x5e, 0xea, 0x0c, 0xc3, 0xbc, 0x83, 0xd9, 0x87,
+	0x1e, 0x04, 0x4f, 0xa5, 0xa0, 0xbc, 0xdc, 0x38, 0x01, 0xef, 0xb0, 0x42, 0x45, 0x6e, 0x43, 0x8f,
+	0x33, 0x5b, 0x1e, 0xe6, 0x3d, 0xce, 0xc8, 0x3a, 0xf8, 0x28, 0x28, 0x9f, 0xb6, 0xa5, 0x0d, 0x20,
+	0xf7, 0x01, 0x8e, 0xb9, 0xaa, 0xf4, 0x51, 0x49, 0x05, 0x26, 0xae, 0x4d, 0x85, 0x36, 0xf2, 0x92,
+	0x0a, 0x24, 0xf7, 0x20, 0x9c, 0xd2, 0x2e, 0xeb, 0xd9, 0xec, 0xaa, 0x09, 0x98, 0xe4, 0xc6, 0x1b,
+	0xf0, 0x5e, 0x49, 0x8d, 0xdf, 0x31, 0xdd, 0x85, 0x7e, 0x5d, 0xa1, 0x3a, 0xe2, 0xac, 0xe5, 0x0a,
+	0x0c, 0x7c, 0xc1, 0xcc, 0x4e, 0x42, 0x4a, 0xd6, 0xd2, 0xd8, 0xb3, 0xd9, 0x69, 0x22, 0x85, 0xc0,
+	0x52, 0xb7, 0xfd, 0x3b, 0x48, 0x36, 0x21, 0xd4, 0x5c, 0x60, 0xa5, 0xa9, 0x98, 0x25, 0x7e, 0xea,
+	0x0c, 0xdd, 0x7c, 0x1e, 0xc8, 0x9e, 0x80, 0xb7, 0x67, 0xea, 0x23, 0x08, 0x0f, 0x4b, 0x86, 0xc7,
+	0xbc, 0x44, 0x16, 0xaf, 0x90, 0x3e, 0xb8, 0x3b, 0x94, 0xc5, 0x0e, 0xb9, 0x05, 0xab, 0x7b, 0x92,
+	0xa1, 0xa2, 0x1a, 0xe3, 0x1e, 0x59, 0x05, 0xef, 0xb9, 0x94, 0x2c, 0x76, 0xb3, 0x53, 0x88, 0xcc,
+	0xf5, 0xec, 0x2a, 0xa4, 0x1a, 0x73, 0x3c, 0xfd, 0xfb, 0xf7, 0x94, 0x7d, 0x74, 0x1a, 0xce, 0x03,
+	0xa4, 0x6a, 0x72, 0x62, 0x38, 0xd7, 0xc1, 0x3f, 0xad, 0x51, 0x9d, 0xb5, 0xb4, 0x0d, 0x30, 0xd7,
+	0x33, 0xeb, 0xde, 0x36, 0xca, 0xed, 0xd9, 0x5c, 0xcf, 0x0c, 0xd5, 0xbe, 0x09, 0xbb, 0x36, 0xdc,
+	0x41, 0xd3, 0xa3, 0x92, 0x4a, 0x57, 0x89, 0x97, 0xba, 0xa6, 0x87, 0x05, 0xf3, 0xe9, 0xfd, 0xe5,
+	0xd3, 0x07, 0x3f, 0x9c, 0xbe, 0x7f, 0x6d, 0xfa, 0xd7, 0x10, 0x1d, 0xf0, 0xb2, 0x98, 0xa2, 0x59,
+	0x21, 0xc7, 0x8a, 0xa4, 0xe0, 0xa3, 0x91, 0xa8, 0x1d, 0x7e, 0x6d, 0x1b, 0x46, 0x46, 0xf1, 0x56,
+	0xb4, 0x79, 0x93, 0x20, 0x43, 0x08, 0xb0, 0xd4, 0x5c, 0x9f, 0xd9, 0x55, 0xd6, 0xb6, 0x63, 0xfb,
+	0x49, 0xa3, 0xcf, 0x91, 0x6d, 0xd3, 0xe6, 0xb3, 0x1a, 0xee, 0xec, 0xd5, 0x53, 0xcd, 0x67, 0xbf,
+	0xd3, 0x7e, 0x1d, 0x7c, 0x2d, 0x35, 0x6d, 0x5e, 0xc8, 0xcf, 0x1b, 0x40, 0x1e, 0x18, 0x73, 0x88,
+	0x31, 0xaa, 0x2a, 0x71, 0x53, 0x77, 0x21, 0x6b, 0xf7, 0x41, 0x76, 0xee, 0x40, 0xbc, 0x4f, 0x0b,
+	0x5e, 0x52, 0x8d, 0xec, 0x86, 0xc4, 0x51, 0x47, 0xbc, 0xfc, 0x89, 0x36, 0x21, 0x34, 0x8f, 0xb8,
+	0x2b, 0xeb, 0x56, 0xdd, 0x51, 0x3e, 0x0f, 0x90, 0x14, 0xd6, 0x26, 0xb5, 0x52, 0x58, 0x6a, 0x5b,
+	0xeb, 0xdb, 0xfc, 0xe5, 0xd0, 0xe5, 0x95, 0x82, 0x9f, 0xad, 0xf4, 0xd6, 0x81, 0xc8, 0xb8, 0x71,
+	0xb9, 0xb0, 0x97, 0xda, 0xf2, 0x8a, 0xd1, 0xdc, 0x6b, 0x46, 0xfb, 0x66, 0x5a, 0x6f, 0xb1, 0x69,
+	0xfd, 0x2b, 0xa6, 0xcd, 0xde, 0xb5, 0x63, 0xfc, 0x0b, 0xad, 0x5f, 0x5a, 0xc8, 0x5f, 0xf8, 0x3b,
+	0x13, 0xcc, 0x47, 0x9e, 0xcb, 0xd8, 0x4c, 0xf7, 0x07, 0x64, 0x6c, 0xdb, 0x2c, 0x90, 0xf1, 0xaf,
+	0xb7, 0xbf, 0x89, 0x8c, 0x6d, 0xf7, 0xc5, 0x32, 0xbe, 0x21, 0xf1, 0x7f, 0x97, 0xf1, 0x95, 0x95,
+	0x76, 0xe2, 0x4f, 0x17, 0x03, 0xe7, 0xfc, 0x62, 0xe0, 0x7c, 0xbe, 0x18, 0x38, 0xef, 0xbf, 0x0c,
+	0x56, 0xc6, 0x81, 0xfd, 0x63, 0x7c, 0xf4, 0x35, 0x00, 0x00, 0xff, 0xff, 0xc7, 0xc4, 0xa0, 0xe6,
+	0x59, 0x07, 0x00, 0x00,
+}

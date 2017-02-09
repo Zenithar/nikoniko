@@ -19,17 +19,18 @@ message Domain {
   }
 
   message Vote {
-    enum Mood {
-      UNDEFINED = 0;
-      BAD = 1;
-      MODERATE = 2;
-      GOOD = 3;
-    }
     string id = 1;
     string user_id = 2;
-    Mood mood = 3;
+    string mood = 3;
     string comment = 4;
     int64 timestamp = 5;
+  }
+
+  enum Mood {
+    Undefined = 0;
+    Bad = 1;
+    Moderate = 2;
+    Good = 3;
   }
 
 }
@@ -83,7 +84,7 @@ message VoteCreateReq {
   string id = 1;
   string user_id = 2;
   int64 timestamp = 3;
-  Domain.Vote.Mood mood = 4;
+  string mood = 4;
   string comment = 5;
 }
 
@@ -93,7 +94,7 @@ message VoteSearchReq {
   uint32 perPage = 3;
   repeated string sorts = 4;
   string user_id = 5;
-  Domain.Vote.Mood mood = 6;
+  string mood = 6;
 }
 
 message SingleVoteRes {
