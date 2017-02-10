@@ -28,9 +28,11 @@ message Domain {
 
   enum Mood {
     Undefined = 0;
-    Bad = 1;
-    Moderate = 2;
-    Good = 3;
+    Angry = 1;
+    Bad = 2;
+    Moderate = 3;
+    Good = 4;
+    Happy = 5;
   }
 
 }
