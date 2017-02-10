@@ -39,11 +39,11 @@ var (
 	devMode = flag.Bool("dev", false, "Enable developer mode")
 
 	// Public URL
-	publicURL = flag.String("public_url", "https://login.esec.fr.capgemini.com", "Defines the public url")
+	publicURL = flag.String("public_url", "https://mood.zenithar.org", "Defines the public url")
 
 	// Cookie
 	cookieSecure     = flag.Bool("cookie_secure", true, "Secure flag for cookies")
-	cookieKey        = flag.String("cookie_key", ":|c}eico/t/H?Tj{@$UJU6@kGo^W@vfs", "Cookie key for signing (32 bytes long)")
+	cookieKey        = flag.String("cookie_key", ":|c}eico/t/H?uj{@$UJU6@kGo^W@vfs", "Cookie key for signing (32 bytes long)")
 	cookieExpiration = flag.Int("cookie_expiration", 60, "Cookie expiration in minutes")
 
 	// Cache
@@ -141,6 +141,7 @@ func main() {
 
 	// Initialize the application
 	app := system.Setup(shared.Config)
+
 	// Start application
 	app.Start()
 

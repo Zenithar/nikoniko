@@ -3,6 +3,8 @@ package system
 import (
 	"net/http"
 
+	"goji.io/pat"
+
 	"zenithar.org/go/nikoniko/cmd/server/routes"
 	"zenithar.org/go/nikoniko/cmd/server/shared"
 	"zenithar.org/go/nikoniko/services"
@@ -89,6 +91,10 @@ func (a *baseApplication) Router() http.Handler {
 	root.Use(routes.ContentRenderMiddleware)
 
 	// Configure Router
+	voteCtrl, _ := routes.NewVoteController(a.votes)
+
+	// Route controllers
+	root.HandleFunc(pat.Get("/"), voteCtrl.Index)
 
 	return root
 }

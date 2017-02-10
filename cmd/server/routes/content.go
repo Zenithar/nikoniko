@@ -91,9 +91,6 @@ func contentAfterware(rw http.ResponseWriter, r *http.Request) {
 			m["xsrf_token"] = csrf.Token(r.Context(), r)
 			m["xsrf_data"] = csrf.TemplateField(r.Context(), r)
 
-			// Authentication
-			m["authenticated"] = false
-
 			// Environment
 			if shared.Config.DevMode {
 				m["environment"] = "dev"
